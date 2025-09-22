@@ -1,246 +1,245 @@
-<!DOCTYPE html><html lang="id">
+<!DOCTYPE html>
+<html lang="id">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Keseharian Ojol - Landing Page</title>
+  <title>Haris Al - Driver Ojol</title>
   <style>
-    body {
+    * {
       margin: 0;
-      font-family: Arial, sans-serif;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
       line-height: 1.6;
-      color: #fff;
+      color: #333;
+      background: #f9f9f9;
     }
+
     header {
-      background: url('assets/hero.png') center/cover no-repeat;
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
+      background: linear-gradient(to right, #16a085, #1abc9c);
+      color: white;
+      padding: 70px 20px;
       text-align: center;
-      color: #fff;
-      position: relative;
     }
-    header::after {
-      content: "";
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0,0,0,0.5);
-    }
-    header h1, header p, header .cta-btn {
-      position: relative;
-      z-index: 1;
-    }
+
     header h1 {
-      font-size: 3rem;
+      font-size: 2.8rem;
+      font-weight: bold;
     }
+
     header p {
       font-size: 1.2rem;
-      margin-top: 10px;
+      margin: 15px 0 25px;
     }
-    .cta-btn {
-      margin-top: 20px;
+
+    header a {
+      background: white;
+      color: #16a085;
       padding: 12px 24px;
-      background: #ff6600;
-      color: #fff;
-      border: none;
-      border-radius: 25px;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-    .cta-btn:hover {
-      background: #e65c00;
-    }
-    section {
-      padding: 60px 20px;
-      max-width: 1100px;
-      margin: auto;
-      opacity: 0;
-      transform: translateY(30px);
-      transition: all 0.8s ease;
-    }
-    section.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    .about {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      align-items: center;
-    }
-    .about img {
-      border-radius: 50%;
-      width: 200px;
-      height: 200px;
-      object-fit: cover;
-    }
-    .about-text {
-      flex: 1;
-    }
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 15px;
-    }
-    .gallery img {
-      width: 100%;
-      border-radius: 10px;
-      transition: transform 0.3s ease;
-    }
-    .gallery img:hover {
-      transform: scale(1.05);
-    }
-    footer {
-      background: #222;
-      color: #fff;
-      text-align: center;
-      padding: 20px;
-    }
-    /* Back to top button */
-    #backToTop {
-      display: none;
-      position: fixed;
-      bottom: 30px;
-      right: 30px;
-      z-index: 100;
-      background: #ff6600;
-      color: #fff;
-      border: none;
-      padding: 10px 15px;
-      border-radius: 50%;
-      cursor: pointer;
-      font-size: 18px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.3);
-      transition: background 0.3s;
-    }
-    #backToTop:hover {
-      background: #e65c00;
-    }
-    /* Popup CTA */
-    .popup {
-      display: none;
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.6);
-      justify-content: center;
-      align-items: center;
-      z-index: 200;
-    }
-    .popup-content {
-      background: #fff;
-      padding: 20px;
-      border-radius: 12px;
-      text-align: center;
-      max-width: 300px;
-      position: relative;
-    }
-    .popup-content h3 {
-      margin-bottom: 15px;
-    }
-    .popup-content a {
-      display: inline-block;
-      padding: 10px 20px;
-      background: #25D366;
-      color: #fff;
       text-decoration: none;
       border-radius: 25px;
       font-weight: bold;
+      transition: 0.3s;
     }
-    .close-popup {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      background: none;
-      border: none;
-      font-size: 20px;
-      cursor: pointer;
+
+    header a:hover {
+      background: #f1f1f1;
     }
+
+    section {
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    section h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      color: #16a085;
+    }
+
+    .about p {
+      max-width: 700px;
+      margin: auto;
+      font-size: 1.1rem;
+      line-height: 1.8;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .gallery img {
+      width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.05);
+    }
+
+    .quote {
+      background: #fff;
+      border-left: 5px solid #16a085;
+      padding: 20px;
+      max-width: 600px;
+      margin: 30px auto;
+      font-style: italic;
+      font-size: 1.1rem;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .card {
+      background: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card h3 {
+      margin-bottom: 10px;
+      color: #16a085;
+    }
+
+    .card p {
+      font-size: 0.95rem;
+      margin-bottom: 15px;
+    }
+
+    .card a {
+      display: inline-block;
+      background: #16a085;
+      color: white;
+      padding: 8px 16px;
+      border-radius: 20px;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: 0.3s;
+    }
+
+    .card a:hover {
+      background: #138d75;
+    }
+
+    .contact a {
+      display: inline-block;
+      margin-top: 15px;
+      background: #25D366;
+      color: white;
+      padding: 12px 20px;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .contact a:hover {
+      background: #1ebe5a;
+    }
+
+    footer {
+      background: #16a085;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+
+    footer p {
+      margin: 0;
+      font-size: 0.9rem;
+    }
+
+    /* Responsif */
     @media (max-width: 768px) {
       header h1 {
-        font-size: 2rem;
+        font-size: 2.2rem;
       }
-      .about {
-        flex-direction: column;
-        text-align: center;
-      }
-      .about img {
-        margin-bottom: 20px;
+
+      header p {
+        font-size: 1rem;
       }
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>Keseharian Ojol</h1>
-    <p>Perjalanan dan cerita saya sebagai driver ojek online</p>
-    <button class="cta-btn" id="openPopup">Hubungi Saya</button>
-  </header>  <section class="about">
-    <img src="assets/avatar.jpg" alt="Profil Ojol">
-    <div class="about-text">
-      <h2>Tentang Saya</h2>
-      <p>Halo, saya Haris, seorang driver ojol dari Balikpapan. Di halaman ini saya berbagi cerita, pengalaman, dan keseharian di jalan. Semoga bisa menginspirasi dan memberi gambaran nyata kehidupan ojol.</p>
+    <h1>Haris Al - Driver Ojol</h1>
+    <p>Keseharian seorang driver ojol di Balikpapan 🚴‍♂️</p>
+    <a href="#about">Kenal Lebih Dekat</a>
+  </header>
+
+  <section id="about" class="about">
+    <h2>Tentang Saya</h2>
+    <p>
+      Hai! Saya Haris, seorang driver ojek online yang penuh semangat.  
+      Setiap hari saya menjemput penumpang, mengantar pesanan makanan, hingga mengirim barang.  
+      Selain ojol, saya juga menulis ebook, membangun usaha kopi <b>Tuang Rasa Balikpapan</b>, dan membuka dukungan untuk teman-teman yang ingin support perjalanan saya.
+    </p>
+  </section>
+
+  <section id="gallery">
+    <h2>Galeri Keseharian</h2>
+    <div class="gallery">
+      <img src="https://via.placeholder.com/400x250" alt="Aktivitas ojol 1">
+      <img src="https://via.placeholder.com/400x250" alt="Aktivitas ojol 2">
+      <img src="https://via.placeholder.com/400x250" alt="Aktivitas ojol 3">
     </div>
-  </section>  <section class="gallery">
-    <h2>Galeri Perjalanan</h2>
-    <img src="assets/gallery1.jpg" alt="Perjalanan 1">
-    <img src="assets/gallery2.jpg" alt="Perjalanan 2">
-    <img src="assets/gallery3.jpg" alt="Perjalanan 3">
-  </section>  <footer>
-    <p>© 2025 Keseharian Ojol - Dibuat dengan ❤️</p>
-  </footer><button id="backToTop">↑</button>
+  </section>
 
-  <!-- Popup CTA -->  <div class="popup" id="popup">
-    <div class="popup-content">
-      <button class="close-popup" id="closePopup">×</button>
-      <h3>Hubungi Saya di WhatsApp</h3>
-      <a href="https://wa.me/628563716270?text=Halo%20Haris%2C%20saya%20lihat%20landing%20page%20ojol%20kamu" target="_blank">Chat Sekarang</a>
+  <section id="projects">
+    <h2>Kegiatan Lain</h2>
+    <div class="cards">
+      <div class="card">
+        <h3>Ebook Saya</h3>
+        <p>Saya menulis ebook tentang pengalaman ojol dan cara mencari cuan online.</p>
+        <a href="#">Lihat Ebook</a>
+      </div>
+      <div class="card">
+        <h3>Usaha Kopi</h3>
+        <p>Brand kopi saya, <b>Tuang Rasa Balikpapan</b>, siap temani hari kamu.</p>
+        <a href="#">Lihat Kopi</a>
+      </div>
+      <div class="card">
+        <h3>Support Me</h3>
+        <p>Bantu saya terus berkarya dan berbagi cerita lewat dukunganmu.</p>
+        <a href="#">Dukung Saya</a>
+      </div>
     </div>
-  </div>  <script>
-    // Scroll animation
-    const sections = document.querySelectorAll('section');
-    const revealOnScroll = () => {
-      const triggerBottom = window.innerHeight * 0.85;
-      sections.forEach(section => {
-        const top = section.getBoundingClientRect().top;
-        if(top < triggerBottom){
-          section.classList.add('visible');
-        }
-      });
-    };
-    window.addEventListener('scroll', revealOnScroll);
-    window.addEventListener('load', revealOnScroll);
+  </section>
 
-    // Back to top button
-    const backToTop = document.getElementById('backToTop');
-    window.addEventListener('scroll', () => {
-      if(window.scrollY > 300){
-        backToTop.style.display = 'block';
-      } else {
-        backToTop.style.display = 'none';
-      }
-    });
-    backToTop.addEventListener('click', () => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
+  <section id="quote">
+    <h2>Motivasi</h2>
+    <div class="quote">
+      "Setiap perjalanan punya cerita, dan setiap tawa penumpang adalah bahan bakar semangat saya."
+    </div>
+  </section>
 
-    // Popup CTA
-    const popup = document.getElementById('popup');
-    const openPopup = document.getElementById('openPopup');
-    const closePopup = document.getElementById('closePopup');
+  <section class="contact">
+    <h2>Hubungi Saya</h2>
+    <p>Ingin ngobrol atau bekerja sama? Klik tombol di bawah 👇</p>
+    <a href="https://wa.me/628563716270?text=Halo%20Haris%2C%20saya%20lihat%20landing%20page%20kamu" target="_blank">Chat via WhatsApp</a>
+  </section>
 
-    openPopup.addEventListener('click', () => {
-      popup.style.display = 'flex';
-    });
-    closePopup.addEventListener('click', () => {
-      popup.style.display = 'none';
-    });
-    window.addEventListener('click', (e) => {
-      if(e.target == popup){
-        popup.style.display = 'none';
-      }
-    });
-  </script></body>
+  <footer>
+    <p>© 2025 Haris Al  • Dibuat dengan ❤️</p>
+  </footer>
+</body>
 </html>
