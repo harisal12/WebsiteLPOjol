@@ -1,40 +1,227 @@
 <!doctype html>
-
 <html lang="id">
 <head>
   <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-      <title>Hidup di Jalanan — Landing Page Haris (Ojol)</title>
-        <meta name="description" content="Keseharian driver ojol: cerita, proyek, dan cara mendukung. Personal branding & toko digital." />
-          <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-            <style>
-                :root{--accent:#00a86b;--dark:#111827;--muted:#6b7280;--card:#ffffff}
-                    *{box-sizing:border-box}
-                        html,body{height:100%;margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial;color:var(--dark);background:#f7f7f9}
-                            a{color:inherit;text-decoration:none}
-                                .container{max-width:980px;margin:0 auto;padding:28px}/* Header */
-                                header{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 0}
-                                .brand{display:flex;align-items:center;gap:12px}
-                                .logo{width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,var(--accent),#059669);display:flex;align-items:center;justify-content:center;color:white;font-weight:700}
-                                nav{display:flex;gap:12px}
-                                .btn{background:var(--accent);color:#fff;padding:10px 14px;border-radius:10px;font-weight:600}
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Hidup di Jalanan — Landing Page Haris (Ojol)</title>
+  <meta name="description" content="Keseharian driver ojol: cerita, proyek, dan cara mendukung. Personal branding & toko digital." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{--accent:#00a86b;--dark:#111827;--muted:#6b7280;--card:#ffffff}
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial;color:var(--dark);background:#f7f7f9}
+    a{color:inherit;text-decoration:none}
+    .container{max-width:980px;margin:0 auto;padding:28px}/* Header */
+header{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 0}
+.brand{display:flex;align-items:center;gap:12px}
+.logo{width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,var(--accent),#059669);display:flex;align-items:center;justify-content:center;color:white;font-weight:700}
+nav{display:flex;gap:12px}
+.btn{background:var(--accent);color:#fff;padding:10px 14px;border-radius:10px;font-weight:600}
 
-                                /* Hero */
-                                .hero{display:grid;grid-template-columns:1fr 360px;gap:28px;align-items:center;margin-top:18px}
-                                .hero .headline{font-size:28px;line-height:1.05;font-weight:800}
-                                .hero p{color:var(--muted);margin-top:10px}
-                                .hero .cta{margin-top:18px;display:flex;gap:12px}
-                                .card-hero{background:linear-gradient(180deg,#fff, #fbfbfd);border-radius:16px;padding:14px;box-shadow:0 6px 18px rgba(16,24,40,0.06)}
-                                .hero-photo{width:100%;height:100%;max-height:420px;border-radius:12px;object-fit:cover}
+/* Hero */
+.hero{display:grid;grid-template-columns:1fr 360px;gap:28px;align-items:center;margin-top:18px}
+.hero .headline{font-size:28px;line-height:1.05;font-weight:800}
+.hero p{color:var(--muted);margin-top:10px}
+.hero .cta{margin-top:18px;display:flex;gap:12px}
+.card-hero{background:linear-gradient(180deg,#fff, #fbfbfd);border-radius:16px;padding:14px;box-shadow:0 6px 18px rgba(16,24,40,0.06)}
+.hero-photo{width:100%;height:100%;max-height:420px;border-radius:12px;object-fit:cover}
 
-                                /* Sections */
-                                section{margin-top:34px}
-                                .section-title{font-size:18px;font-weight:700;margin-bottom:12px}
-                                .about{display:flex;gap:18px;align-items:center}
-                                .about .avatar{width:120px;height:120px;border-radius:12px;object-fit:cover}
-                                .timeline{display:flex;flex-direction:column;gap:12px}
-                                .timeline .step{background:var(--card);padding:12px;border-radius:10px;box-shadow:0 4px 10px rgba(2,6,23,0.04)}
+/* Sections */
+section{margin-top:34px}
+.section-title{font-size:18px;font-weight:700;margin-bottom:12px}
+.about{display:flex;gap:18px;align-items:center}
+.about .avatar{width:120px;height:120px;border-radius:12px;object-fit:cover}
+.timeline{display:flex;flex-direction:column;gap:12px}
+.timeline .step{background:var(--card);padding:12px;border-radius:10px;box-shadow:0 4px 10px rgba(2,6,23,0.04)}
 
+/* Gallery */
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.gallery img{width:100%;height:120px;object-fit:cover;border-radius:8px}
+
+/* Projects */
+.projects{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.proj{background:var(--card);padding:14px;border-radius:12px;box-shadow:0 6px 16px rgba(2,6,23,0.04)}
+.proj h4{margin:0 0 8px 0}
+
+/* Testimonials */
+.testi{display:flex;flex-direction:column;gap:10px}
+.testi .t{background:linear-gradient(180deg,#fff,#fcfcff);padding:12px;border-radius:10px}
+
+/* CTA Footer */
+.final-cta{display:flex;align-items:center;justify-content:space-between;gap:12px;background:linear-gradient(90deg,#ecfdf5,#ffffff);padding:18px;border-radius:14px}
+
+footer{margin-top:28px;padding:28px 0;color:var(--muted);font-size:14px}
+
+/* Responsive */
+@media (max-width:900px){
+  .hero{grid-template-columns:1fr}
+  .projects,.gallery{grid-template-columns:repeat(2,1fr)}
+  .brand .logo{width:48px;height:48px}
+}
+@media (max-width:520px){
+  .gallery img{height:100px}
+  .projects,.gallery{grid-template-columns:1fr}
+  nav{display:none}
+}
+
+/* small utilities */
+.muted{color:var(--muted)}
+.pill{display:inline-block;padding:6px 10px;border-radius:999px;background:#f1f5f9;font-weight:600}
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="logo">HJ</div>
+        <div>
+          <div style="font-weight:800">Haris — Ojol Diaries</div>
+          <div class="muted" style="font-size:13px">Driver | Pembuat Ebook | Pecinta Kopi</div>
+        </div>
+      </div>
+      <nav>
+        <a href="#about">About</a>
+        <a href="#story">Keseharian</a>
+        <a href="#projects">Proyek</a>
+        <a href="#contact">Kontak</a>
+        <a class="btn" href="#support">Dukung</a>
+      </nav>
+    </header><main>
+  <!-- HERO -->
+  <section class="hero">
+    <div>
+      <div class="headline">Hidup di Jalanan, Ngejar Mimpi di Setiap Orderan 🚦</div>
+      <p class="muted">Cerita sehari-hari saya sebagai driver ojol: dari pagi yang dingin, orderan unik, sampai mimpi-mimpi kecil yang sedang dibangun. Ikuti dan dukung perjalanan ini.</p>
+      <div class="cta">
+        <a class="btn" href="#story">Ikuti Ceritaku</a>
+        <a style="padding:10px 14px;border-radius:10px;border:1px solid #e6e6e9;font-weight:700" href="#support">Dukung Perjalananku</a>
+      </div>
+
+      <div style="margin-top:18px;display:flex;gap:8px">
+        <div class="card-hero" style="flex:1">
+          <div style="font-weight:700">Statistik Mingguan</div>
+          <div style="display:flex;gap:14px;margin-top:10px">
+            <div>
+              <div style="font-size:18px;font-weight:800">Rp1.500.000</div>
+              <div class="muted">Pendapatan / minggu</div>
+            </div>
+            <div>
+              <div style="font-size:18px;font-weight:800">120</div>
+              <div class="muted">Order / minggu</div>
+            </div>
+          </div>
+        </div>
+        <div style="width:200px;align-self:center" class="muted">Ganti foto hero: <br><small>/assets/hero.jpg</small></div>
+      </div>
+    </div>
+
+    <div>
+      <!-- replace src with your image -->
+      <img class="hero-photo" src="/assets/hero.jpg" alt="Foto Haris dengan motor">
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-title">Tentang Saya</div>
+    <div class="about">
+      <img class="avatar" src="/assets/avatar.jpg" alt="Avatar Haris">
+      <div>
+        <p style="margin:0">Hai, saya <strong>Haris</strong>. Sehari-hari saya bekerja sebagai driver ojol di Balikpapan. Lewat website ini saya berbagi cerita, proyek kecil, dan kesempatan untuk dukung perjalanan saya — baik lewat beli ebook, beli kopi botol, atau investasi kecil-kecilan pada saya.</p>
+        <p class="muted" style="margin-top:8px">Ganti teks ini sesuai nama, kota, dan penawaran yang ingin kamu tampilkan. Teks dibuat santai agar pembaca merasa dekat.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TIMELINE / Keseharian -->
+  <section id="story">
+    <div class="section-title">Keseharian</div>
+    <div class="timeline">
+      <div class="step"><strong>Pagi</strong> — Siapkan motor, cek bahan bakar, dan buka aplikasi. Kopi dulu sebelum ngegas.</div>
+      <div class="step"><strong>Siang</strong> — Istirahat sejenak, ngetik ide ebook, atau foto-foto untuk konten.</div>
+      <div class="step"><strong>Sore</strong> — Jam sibuk; orderan datang bertubi-tubi. Tetap jaga keselamatan.</div>
+      <div class="step"><strong>Malam</strong> — Pulang, catat penghasilan harian, dan istirahat untuk besok.</div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section>
+    <div class="section-title">Galeri</div>
+    <div class="gallery">
+      <img src="/assets/gallery1.jpg" alt="gallery 1">
+      <img src="/assets/gallery2.jpg" alt="gallery 2">
+      <img src="/assets/gallery3.jpg" alt="gallery 3">
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="section-title">Proyek & Mimpi</div>
+    <div class="projects">
+      <div class="proj">
+        <h4>Ebook: Cuan Sambil Ngegas</h4>
+        <p class="muted">Panduan jadi driver ojol & jualan online. <strong>Rp45.000</strong></p>
+        <div style="margin-top:8px"><a href="#" class="pill">Beli Sekarang</a></div>
+      </div>
+
+      <div class="proj">
+        <h4>Kopi Botol — Tuang Rasa</h4>
+        <p class="muted">Kopi lokal botolan, rasa kopi aren & kelapa.</p>
+        <div style="margin-top:8px"><a href="#" class="pill">Lihat Produk</a></div>
+      </div>
+
+      <div class="proj">
+        <h4>Program Investasi Ojol</h4>
+        <p class="muted">Investor bantu modal, dapat bagi hasil. Periode 6 bulan.</p>
+        <div style="margin-top:8px"><a href="#support" class="pill">Info Investasi</a></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section>
+    <div class="section-title">Testimoni</div>
+    <div class="testi">
+      <div class="t"><strong>Rina</strong> — "Mas Haris ramah dan cepat antar saya sampai tujuan. Recommended!"</div>
+      <div class="t"><strong>Anton</strong> — "Ebooknya relate banget. Banyak tips yang saya pakai."</div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section id="support">
+    <div class="final-cta">
+      <div>
+        <div style="font-weight:800">Mau dukung perjalanan ini?</div>
+        <div class="muted" style="margin-top:6px">Dukunganmu bisa lewat beli ebook, pesan kopi, atau donasi kecil.</div>
+      </div>
+      <div style="display:flex;gap:8px">
+        <a class="btn" href="#contact">Hubungi</a>
+        <a style="padding:10px 14px;border-radius:10px;border:1px solid #e6e6e9;font-weight:700" href="#">Donasi</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="section-title">Kontak & Social</div>
+    <p class="muted">Hubungi saya via WhatsApp / Instagram / Tiktok. Cantumkan nomor WhatsApp atau link sosial media di sini.</p>
+    <div style="display:flex;gap:8px;margin-top:10px">
+      <a class="pill" href="https://wa.me/62">WhatsApp</a>
+      <a class="pill" href="#">Instagram</a>
+      <a class="pill" href="#">Tiktok</a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  © "Haris — Ojol Diaries" • Buat dengan semangat. Ganti konten dan gambar sesuai kebutuhan.
+</footer>
+
+  </div>
+</body>
+</html>
                                 /* Gallery */
                                 .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
                                 .gallery img{width:100%;height:120px;object-fit:cover;border-radius:8px}
