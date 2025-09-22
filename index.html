@@ -1,389 +1,246 @@
-<!doctype html>
-
-<html lang="id">
+<!DOCTYPE html><html lang="id">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Haris — Ojol Diaries</title>
-  <meta name="description" content="Keseharian driver ojol: cerita, proyek, dan cara mendukung. Personal branding & toko digital." />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Keseharian Ojol - Landing Page</title>
   <style>
-    :root {
-      --accent: #00a86b;
-      --dark: #111827;
-      --muted: #6b7280;
-      --bg: #f9fafb;
-      --card: #ffffff;
-    }* { box-sizing: border-box; }
-html, body {
-  margin: 0;
-  font-family: 'Inter', sans-serif;
-  color: var(--dark);
-  background: var(--bg);
-  line-height: 1.6;
-}
-
-a { color: inherit; text-decoration: none; }
-img { max-width: 100%; display: block; }
-
-.container { max-width: 1100px; margin: 0 auto; padding: 1.5rem; }
-
-/* Header */
-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1rem 0;
-}
-.brand { display: flex; align-items: center; gap: 0.75rem; }
-.logo {
-  width: 50px; height: 50px;
-  border-radius: 12px;
-  background: var(--accent);
-  display: flex; align-items: center; justify-content: center;
-  font-weight: 700; color: #fff;
-}
-nav { display: flex; gap: 1rem; }
-.btn {
-  background: var(--accent);
-  color: #fff;
-  padding: 0.6rem 1rem;
-  border-radius: 8px;
-  font-weight: 600;
-  font-size: 0.95rem;
-  transition: background 0.2s ease;
-}
-.btn:hover { background: #059669; }
-
-/* Hero */
-.hero {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
-  align-items: center;
-  margin: 2rem 0;
-}
-.hero h1 {
-  font-size: 2rem;
-  font-weight: 800;
-  line-height: 1.2;
-}
-.hero p { color: var(--muted); margin-top: 0.5rem; }
-.cta { margin-top: 1rem; display: flex; gap: 0.75rem; flex-wrap: wrap; }
-
-.stats {
-  display: flex;
-  gap: 1.5rem;
-  margin-top: 1.5rem;
-}
-.stat strong { font-size: 1.2rem; display: block; }
-.stat span { color: var(--muted); font-size: 0.9rem; }
-
-/* Sections */
-section { margin-top: 3rem; }
-.section-title { font-size: 1.3rem; font-weight: 700; margin-bottom: 1rem; }
-
-.about { display: flex; gap: 1.5rem; align-items: center; flex-wrap: wrap; }
-.about img { width: 120px; height: 120px; border-radius: 12px; object-fit: cover; }
-
-.timeline { display: flex; flex-direction: column; gap: 0.75rem; }
-.step {
-  background: var(--card);
-  padding: 0.75rem 1rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-}
-
-.gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.75rem; }
-.gallery img { border-radius: 8px; height: 150px; object-fit: cover; }
-
-.projects { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; }
-.proj {
-  background: var(--card);
-  padding: 1rem;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-}
-.proj h4 { margin: 0 0 0.5rem; }
-
-.testi { display: grid; gap: 0.75rem; }
-.t {
-  background: var(--card);
-  padding: 1rem;
-  border-radius: 8px;
-  font-size: 0.95rem;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.04);
-}
-
-.final-cta {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  background: linear-gradient(90deg, #ecfdf5, #ffffff);
-  padding: 1.5rem;
-  border-radius: 12px;
-  gap: 1rem;
-}
-
-footer {
-  margin-top: 2rem;
-  padding: 2rem 0;
-  color: var(--muted);
-  font-size: 0.9rem;
-  text-align: center;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  .hero { grid-template-columns: 1fr; text-align: center; }
-  .hero h1 { font-size: 1.6rem; }
-  .stats { justify-content: center; }
-  nav { display: none; }
-}
-
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      color: #fff;
+    }
+    header {
+      background: url('assets/hero.png') center/cover no-repeat;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: #fff;
+      position: relative;
+    }
+    header::after {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.5);
+    }
+    header h1, header p, header .cta-btn {
+      position: relative;
+      z-index: 1;
+    }
+    header h1 {
+      font-size: 3rem;
+    }
+    header p {
+      font-size: 1.2rem;
+      margin-top: 10px;
+    }
+    .cta-btn {
+      margin-top: 20px;
+      padding: 12px 24px;
+      background: #ff6600;
+      color: #fff;
+      border: none;
+      border-radius: 25px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .cta-btn:hover {
+      background: #e65c00;
+    }
+    section {
+      padding: 60px 20px;
+      max-width: 1100px;
+      margin: auto;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s ease;
+    }
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .about {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      align-items: center;
+    }
+    .about img {
+      border-radius: 50%;
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+    }
+    .about-text {
+      flex: 1;
+    }
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 15px;
+    }
+    .gallery img {
+      width: 100%;
+      border-radius: 10px;
+      transition: transform 0.3s ease;
+    }
+    .gallery img:hover {
+      transform: scale(1.05);
+    }
+    footer {
+      background: #222;
+      color: #fff;
+      text-align: center;
+      padding: 20px;
+    }
+    /* Back to top button */
+    #backToTop {
+      display: none;
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      z-index: 100;
+      background: #ff6600;
+      color: #fff;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 18px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+      transition: background 0.3s;
+    }
+    #backToTop:hover {
+      background: #e65c00;
+    }
+    /* Popup CTA */
+    .popup {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.6);
+      justify-content: center;
+      align-items: center;
+      z-index: 200;
+    }
+    .popup-content {
+      background: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      text-align: center;
+      max-width: 300px;
+      position: relative;
+    }
+    .popup-content h3 {
+      margin-bottom: 15px;
+    }
+    .popup-content a {
+      display: inline-block;
+      padding: 10px 20px;
+      background: #25D366;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 25px;
+      font-weight: bold;
+    }
+    .close-popup {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: none;
+      border: none;
+      font-size: 20px;
+      cursor: pointer;
+    }
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2rem;
+      }
+      .about {
+        flex-direction: column;
+        text-align: center;
+      }
+      .about img {
+        margin-bottom: 20px;
+      }
+    }
   </style>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <div class="brand">
-        <div class="logo">H.O</div>
-        <div>
-          <div style="font-weight:800">Haris — Ojol Diaries</div>
-          <div class="muted" style="font-size:13px">Driver | Penulis Ebook | Pecinta Kopi</div>
-        </div>
-      </div>
-      <nav>
-        <a href="#about">About</a>
-        <a href="#story">Keseharian</a>
-        <a href="#projects">Proyek</a>
-        <a href="#contact">Kontak</a>
-        <a class="btn" href="#support">Dukung</a>
-      </nav>
-    </header><main>
-  <!-- HERO -->
-  <section class="hero">
-    <div>
-      <h1>Hidup di Jalanan, Ngejar Mimpi di Setiap Orderan 🚦</h1>
-      <p>Cerita saya sebagai driver ojol: dari orderan unik sampai mimpi yang sedang dibangun. Ikuti perjalanan ini.</p>
-      <div class="cta">
-        <a class="btn" href="#story">Ikuti Ceritaku</a>
-        <a style="padding:0.6rem 1rem;border-radius:8px;border:1px solid #ddd;font-weight:600" href="#support">Dukung Saya</a>
-      </div>
-      <div class="stats">
-        <div class="stat"><strong>Rp1.500.000</strong><span>/ minggu</span></div>
-        <div class="stat"><strong>120</strong><span>Order</span></div>
-      </div>
+  <header>
+    <h1>Keseharian Ojol</h1>
+    <p>Perjalanan dan cerita saya sebagai driver ojek online</p>
+    <button class="cta-btn" id="openPopup">Hubungi Saya</button>
+  </header>  <section class="about">
+    <img src="assets/avatar.jpg" alt="Profil Ojol">
+    <div class="about-text">
+      <h2>Tentang Saya</h2>
+      <p>Halo, saya Haris, seorang driver ojol dari Balikpapan. Di halaman ini saya berbagi cerita, pengalaman, dan keseharian di jalan. Semoga bisa menginspirasi dan memberi gambaran nyata kehidupan ojol.</p>
     </div>
-    <div>
-      <img src="assets/hero.png" alt="Foto Haris dengan motor">
+  </section>  <section class="gallery">
+    <h2>Galeri Perjalanan</h2>
+    <img src="assets/gallery1.jpg" alt="Perjalanan 1">
+    <img src="assets/gallery2.jpg" alt="Perjalanan 2">
+    <img src="assets/gallery3.jpg" alt="Perjalanan 3">
+  </section>  <footer>
+    <p>© 2025 Keseharian Ojol - Dibuat dengan ❤️</p>
+  </footer><button id="backToTop">↑</button>
+
+  <!-- Popup CTA -->  <div class="popup" id="popup">
+    <div class="popup-content">
+      <button class="close-popup" id="closePopup">×</button>
+      <h3>Hubungi Saya di WhatsApp</h3>
+      <a href="https://wa.me/628563716270?text=Halo%20Haris%2C%20saya%20lihat%20landing%20page%20ojol%20kamu" target="_blank">Chat Sekarang</a>
     </div>
-  </section>
+  </div>  <script>
+    // Scroll animation
+    const sections = document.querySelectorAll('section');
+    const revealOnScroll = () => {
+      const triggerBottom = window.innerHeight * 0.85;
+      sections.forEach(section => {
+        const top = section.getBoundingClientRect().top;
+        if(top < triggerBottom){
+          section.classList.add('visible');
+        }
+      });
+    };
+    window.addEventListener('scroll', revealOnScroll);
+    window.addEventListener('load', revealOnScroll);
 
-  <!-- ABOUT -->
-  <section id="about">
-    <div class="section-title">Tentang Saya</div>
-    <div class="about">
-      <img src="assets/avatar.jpg" alt="Foto Haris">
-      <p>Hai, saya <strong>Haris</strong>. Sehari-hari saya driver ojol di Balikpapan. Lewat website ini saya berbagi cerita, proyek, dan peluang dukungan — lewat ebook, kopi botol, atau program investasi kecil.</p>
-    </div>
-  </section>
+    // Back to top button
+    const backToTop = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      if(window.scrollY > 300){
+        backToTop.style.display = 'block';
+      } else {
+        backToTop.style.display = 'none';
+      }
+    });
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
 
-  <!-- TIMELINE -->
-  <section id="story">
-    <div class="section-title">Keseharian</div>
-    <div class="timeline">
-      <div class="step"><strong>Pagi</strong> — Cek motor, isi bensin, kopi dulu.</div>
-      <div class="step"><strong>Siang</strong> — Istirahat, ngetik ide ebook, foto konten.</div>
-      <div class="step"><strong>Sore</strong> — Jam sibuk, orderan padat. Safety first!</div>
-      <div class="step"><strong>Malam</strong> — Pulang, catat penghasilan, istirahat.</div>
-    </div>
-  </section>
+    // Popup CTA
+    const popup = document.getElementById('popup');
+    const openPopup = document.getElementById('openPopup');
+    const closePopup = document.getElementById('closePopup');
 
-  <!-- GALLERY -->
-  <section>
-    <div class="section-title">Galeri</div>
-    <div class="gallery">
-      <img src="assets/gallery1.jpg" alt="Gallery 1">
-      <img src="assets/gallery2.jpg" alt="Gallery 2">
-      <img src="assets/gallery3.jpg" alt="Gallery 3">
-    </div>
-  </section>
-
-  <!-- PROJECTS -->
-  <section id="projects">
-    <div class="section-title">Proyek & Mimpi</div>
-    <div class="projects">
-      <div class="proj">
-        <h4>Ebook: Cuan Sambil Ngegas</h4>
-        <p>Panduan jadi driver ojol & jualan online. <strong>Rp45.000</strong></p>
-        <a href="#" class="btn" style="margin-top:0.5rem;display:inline-block;">Beli</a>
-      </div>
-      <div class="proj">
-        <h4>Kopi Botol — Tuang Rasa</h4>
-        <p>Kopi botolan rasa aren & kelapa. Segar & praktis.</p>
-        <a href="#" class="btn" style="margin-top:0.5rem;display:inline-block;">Pesan</a>
-      </div>
-      <div class="proj">
-        <h4>Program Investasi Ojol</h4>
-        <p>Investor bisa bantu modal, dapat bagi hasil. Periode 6 bulan.</p>
-        <a href="#support" class="btn" style="margin-top:0.5rem;display:inline-block;">Info</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- TESTIMONI -->
-  <section>
-    <div class="section-title">Testimoni</div>
-    <div class="testi">
-      <div class="t"><strong>Rina</strong> — "Mas Haris ramah & cepat, recommended!"</div>
-      <div class="t"><strong>Anton</strong> — "Ebooknya bermanfaat banget. Banyak tips berguna."</div>
-    </div>
-  </section>
-
-  <!-- FINAL CTA -->
-  <section id="support">
-    <div class="final-cta">
-      <div>
-        <div style="font-weight:800;font-size:1.1rem;">Mau dukung perjalanan ini?</div>
-        <div class="muted">Bisa lewat beli ebook, pesan kopi, atau donasi kecil.</div>
-      </div>
-      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;">
-        <a class="btn" href="#contact">Hubungi</a>
-        <a style="padding:0.6rem 1rem;border-radius:8px;border:1px solid #ddd;font-weight:600" href="#">Donasi</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTACT -->
-  <section id="contact">
-    <div class="section-title">Kontak</div>
-    <p>Hubungi saya via WhatsApp, Instagram, atau Tiktok:</p>
-    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;">
-      <a class="btn" href="https://wa.me/62">WhatsApp</a>
-      <a class="btn" href="#">Instagram</a>
-      <a class="btn" href="#">Tiktok</a>
-    </div>
-  </section>
-</main>
-
-<footer>
-  © 2025 Haris — Ojol Diaries. Dibuat dengan semangat. Ganti teks & foto sesuai kebutuhan.
-</footer>
-
-  </div>
-</body>
-</html>                                                                                                                                                                                                                                                                                                                                                              </div>
-                                                                                                                                                                                                                                                                                                                                                                        </div>
-                                                                                                                                                                                                                                                                                                                                                                                </div>
-                                                                                                                                                                                                                                                                                                                                                                                        <div style="width:200px;align-self:center" class="muted">Ganti foto hero: <br><small>assets/hero.jpg</small></div>
-                                                                                                                                                                                                                                                                                                                                                                                              </div>
-                                                                                                                                                                                                                                                                                                                                                                                                  </div>
-
-                                                                                                                                                                                                                                                                                                                                                                                                      <div>
-                                                                                                                                                                                                                                                                                                                                                                                                            <!-- replace src with your image -->
-                                                                                                                                                                                                                                                                                                                                                                                                                  <img class="hero-photo" src="assets/hero.jpg" alt="Foto Haris dengan motor">
-                                                                                                                                                                                                                                                                                                                                                                                                                      </div>
-                                                                                                                                                                                                                                                                                                                                                                                                                        </section>
-
-                                                                                                                                                                                                                                                                                                                                                                                                                          <!-- ABOUT -->
-                                                                                                                                                                                                                                                                                                                                                                                                                            <section id="about">
-                                                                                                                                                                                                                                                                                                                                                                                                                                <div class="section-title">Tentang Saya</div>
-                                                                                                                                                                                                                                                                                                                                                                                                                                    <div class="about">
-                                                                                                                                                                                                                                                                                                                                                                                                                                          <img class="avatar" src="/assets/avatar.jpg" alt="Avatar Haris">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                <div>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                        <p style="margin:0">Hai, saya <strong>Haris</strong>. Sehari-hari saya bekerja sebagai driver ojol di Balikpapan. Lewat website ini saya berbagi cerita, proyek kecil, dan kesempatan untuk dukung perjalanan saya — baik lewat beli ebook, beli kopi botol, atau investasi kecil-kecilan pada saya.</p>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                <p class="muted" style="margin-top:8px">Ganti teks ini sesuai nama, kota, dan penawaran yang ingin kamu tampilkan. Teks dibuat santai agar pembaca merasa dekat.</p>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                      </div>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                          </div>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </section>
-
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                              <!-- TIMELINE / Keseharian -->
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <section id="story">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <div class="section-title">Keseharian</div>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <div class="timeline">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              <div class="step"><strong>Pagi</strong> — Siapkan motor, cek bahan bakar, dan buka aplikasi. Kopi dulu sebelum ngegas.</div>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <div class="step"><strong>Siang</strong> — Istirahat sejenak, ngetik ide ebook, atau foto-foto untuk konten.</div>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          <div class="step"><strong>Sore</strong> — Jam sibuk; orderan datang bertubi-tubi. Tetap jaga keselamatan.</div>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <div class="step"><strong>Malam</strong> — Pulang, catat penghasilan harian, dan istirahat untuk besok.</div>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </div>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      </section>
-
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <!-- GALLERY -->
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          <section>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              <div class="section-title">Galeri</div>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  <div class="gallery">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <img src="/assets/gallery1.jpg" alt="gallery 1">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              <img src="/assets/gallery2.jpg" alt="gallery 2">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <img src="/assets/gallery3.jpg" alt="gallery 3">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </div>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          </section>
-
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <!-- PROJECTS -->
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              <section id="projects">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  <div class="section-title">Proyek & Mimpi</div>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      <div class="projects">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <div class="proj">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <h4>Ebook: Cuan Sambil Ngegas</h4>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <p class="muted">Panduan jadi driver ojol & jualan online. <strong>Rp45.000</strong></p>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <div style="margin-top:8px"><a href="#" class="pill">Beli Sekarang</a></div>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          </div>
-
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <div class="proj">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <h4>Kopi Botol — Tuang Rasa</h4>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <p class="muted">Kopi lokal botolan, rasa kopi aren & kelapa.</p>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <div style="margin-top:8px"><a href="#" class="pill">Lihat Produk</a></div>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              </div>
-
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <div class="proj">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <h4>Program Investasi Ojol</h4>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <p class="muted">Investor bantu modal, dapat bagi hasil. Periode 6 bulan.</p>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <div style="margin-top:8px"><a href="#support" class="pill">Info Investasi</a></div>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  </div>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      </div>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </section>
-
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          <!-- TESTIMONIALS -->
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <section>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <div class="section-title">Testimoni</div>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <div class="testi">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          <div class="t"><strong>Rina</strong> — "Mas Haris ramah dan cepat antar saya sampai tujuan. Recommended!"</div>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <div class="t"><strong>Anton</strong> — "Ebooknya relate banget. Banyak tips yang saya pakai."</div>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </div>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      </section>
-
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <!-- FINAL CTA -->
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          <section id="support">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              <div class="final-cta">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <div>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <div style="font-weight:800">Mau dukung perjalanan ini?</div>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <div class="muted" style="margin-top:6px">Dukunganmu bisa lewat beli ebook, pesan kopi, atau donasi kecil.</div>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          </div>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <div style="display:flex;gap:8px">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <a class="btn" href="#contact">Hubungi</a>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <a style="padding:10px 14px;border-radius:10px;border:1px solid #e6e6e9;font-weight:700" href="#">Donasi</a>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      </div>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          </div>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </section>
-
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              <!-- CONTACT -->
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <section id="contact">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <div class="section-title">Kontak & Social</div>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <p class="muted">Hubungi saya via WhatsApp / Instagram / Tiktok. Cantumkan nomor WhatsApp atau link sosial media di sini.</p>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <div style="display:flex;gap:8px;margin-top:10px">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  <a class="pill" href="https://wa.me/62">WhatsApp</a>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <a class="pill" href="#">Instagram</a>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              <a class="pill" href="#">Tiktok</a>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  </div>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </section>
-
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </main>
-
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <footer>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      © "Haris — Ojol Diaries" • Buat dengan semangat. Ganti konten dan gambar sesuai kebutuhan.
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      </footer>
-
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </div>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </body>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </html>
+    openPopup.addEventListener('click', () => {
+      popup.style.display = 'flex';
+    });
+    closePopup.addEventListener('click', () => {
+      popup.style.display = 'none';
+    });
+    window.addEventListener('click', (e) => {
+      if(e.target == popup){
+        popup.style.display = 'none';
+      }
+    });
+  </script></body>
+</html>
