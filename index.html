@@ -3,114 +3,278 @@
 <html lang="id">
 <head>
   <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-      <title>Hidup di Jalanan — Landing Page Haris (Ojol)</title>
-        <meta name="description" content="Keseharian driver ojol: cerita, proyek, dan cara mendukung. Personal branding & toko digital." />
-          <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-            <style>
-                :root{--accent:#00a86b;--dark:#111827;--muted:#6b7280;--card:#ffffff}
-                    *{box-sizing:border-box}
-                        html,body{height:100%;margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial;color:var(--dark);background:#f7f7f9}
-                            a{color:inherit;text-decoration:none}
-                                .container{max-width:980px;margin:0 auto;padding:28px}/* Header */
-                                header{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 0}
-                                .brand{display:flex;align-items:center;gap:12px}
-                                .logo{width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,var(--accent),#059669);display:flex;align-items:center;justify-content:center;color:white;font-weight:700}
-                                nav{display:flex;gap:12px}
-                                .btn{background:var(--accent);color:#fff;padding:10px 14px;border-radius:10px;font-weight:600}
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Haris — Ojol Diaries</title>
+  <meta name="description" content="Keseharian driver ojol: cerita, proyek, dan cara mendukung. Personal branding & toko digital." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --accent: #00a86b;
+      --dark: #111827;
+      --muted: #6b7280;
+      --bg: #f9fafb;
+      --card: #ffffff;
+    }* { box-sizing: border-box; }
+html, body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  color: var(--dark);
+  background: var(--bg);
+  line-height: 1.6;
+}
 
-                                /* Hero */
-                                .hero{display:grid;grid-template-columns:1fr 360px;gap:28px;align-items:center;margin-top:18px}
-                                .hero .headline{font-size:28px;line-height:1.05;font-weight:800}
-                                .hero p{color:var(--muted);margin-top:10px}
-                                .hero .cta{margin-top:18px;display:flex;gap:12px}
-                                .card-hero{background:linear-gradient(180deg,#fff, #fbfbfd);border-radius:16px;padding:14px;box-shadow:0 6px 18px rgba(16,24,40,0.06)}
-                                .hero-photo{width:100%;height:100%;max-height:420px;border-radius:12px;object-fit:cover}
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
 
-                                /* Sections */
-                                section{margin-top:34px}
-                                .section-title{font-size:18px;font-weight:700;margin-bottom:12px}
-                                .about{display:flex;gap:18px;align-items:center}
-                                .about .avatar{width:120px;height:120px;border-radius:12px;object-fit:cover}
-                                .timeline{display:flex;flex-direction:column;gap:12px}
-                                .timeline .step{background:var(--card);padding:12px;border-radius:10px;box-shadow:0 4px 10px rgba(2,6,23,0.04)}
+.container { max-width: 1100px; margin: 0 auto; padding: 1.5rem; }
 
-                                /* Gallery */
-                                .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-                                .gallery img{width:100%;height:120px;object-fit:cover;border-radius:8px}
+/* Header */
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 0;
+}
+.brand { display: flex; align-items: center; gap: 0.75rem; }
+.logo {
+  width: 50px; height: 50px;
+  border-radius: 12px;
+  background: var(--accent);
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; color: #fff;
+}
+nav { display: flex; gap: 1rem; }
+.btn {
+  background: var(--accent);
+  color: #fff;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: background 0.2s ease;
+}
+.btn:hover { background: #059669; }
 
-                                /* Projects */
-                                .projects{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-                                .proj{background:var(--card);padding:14px;border-radius:12px;box-shadow:0 6px 16px rgba(2,6,23,0.04)}
-                                .proj h4{margin:0 0 8px 0}
+/* Hero */
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: center;
+  margin: 2rem 0;
+}
+.hero h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  line-height: 1.2;
+}
+.hero p { color: var(--muted); margin-top: 0.5rem; }
+.cta { margin-top: 1rem; display: flex; gap: 0.75rem; flex-wrap: wrap; }
 
-                                /* Testimonials */
-                                .testi{display:flex;flex-direction:column;gap:10px}
-                                .testi .t{background:linear-gradient(180deg,#fff,#fcfcff);padding:12px;border-radius:10px}
+.stats {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+.stat strong { font-size: 1.2rem; display: block; }
+.stat span { color: var(--muted); font-size: 0.9rem; }
 
-                                /* CTA Footer */
-                                .final-cta{display:flex;align-items:center;justify-content:space-between;gap:12px;background:linear-gradient(90deg,#ecfdf5,#ffffff);padding:18px;border-radius:14px}
+/* Sections */
+section { margin-top: 3rem; }
+.section-title { font-size: 1.3rem; font-weight: 700; margin-bottom: 1rem; }
 
-                                footer{margin-top:28px;padding:28px 0;color:var(--muted);font-size:14px}
+.about { display: flex; gap: 1.5rem; align-items: center; flex-wrap: wrap; }
+.about img { width: 120px; height: 120px; border-radius: 12px; object-fit: cover; }
 
-                                /* Responsive */
-                                @media (max-width:900px){
-                                  .hero{grid-template-columns:1fr}
-                                    .projects,.gallery{grid-template-columns:repeat(2,1fr)}
-                                      .brand .logo{width:48px;height:48px}
-                                      }
-                                      @media (max-width:520px){
-                                        .gallery img{height:100px}
-                                          .projects,.gallery{grid-template-columns:1fr}
-                                            nav{display:none}
-                                            }
+.timeline { display: flex; flex-direction: column; gap: 0.75rem; }
+.step {
+  background: var(--card);
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
 
-                                            /* small utilities */
-                                            .muted{color:var(--muted)}
-                                            .pill{display:inline-block;padding:6px 10px;border-radius:999px;background:#f1f5f9;font-weight:600}
+.gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.75rem; }
+.gallery img { border-radius: 8px; height: 150px; object-fit: cover; }
 
-                                              </style>
-                                              </head>
-                                              <body>
-                                                <div class="container">
-                                                    <header>
-                                                          <div class="brand">
-                                                                  <div class="logo">HJ</div>
-                                                                          <div>
-                                                                                    <div style="font-weight:800">Haris — Ojol Diaries</div>
-                                                                                              <div class="muted" style="font-size:13px">Driver | Pembuat Ebook | Pecinta Kopi</div>
-                                                                                                      </div>
-                                                                                                            </div>
-                                                                                                                  <nav>
-                                                                                                                          <a href="#about">About</a>
-                                                                                                                                  <a href="#story">Keseharian</a>
-                                                                                                                                          <a href="#projects">Proyek</a>
-                                                                                                                                                  <a href="#contact">Kontak</a>
-                                                                                                                                                          <a class="btn" href="#support">Dukung</a>
-                                                                                                                                                                </nav>
-                                                                                                                                                                    </header><main>
-                                                                                                                                                                      <!-- HERO -->
-                                                                                                                                                                        <section class="hero">
-                                                                                                                                                                            <div>
-                                                                                                                                                                                  <div class="headline">Hidup di Jalanan, Ngejar Mimpi di Setiap Orderan 🚦</div>
-                                                                                                                                                                                        <p class="muted">Cerita sehari-hari saya sebagai driver ojol: dari pagi yang dingin, orderan unik, sampai mimpi-mimpi kecil yang sedang dibangun. Ikuti dan dukung perjalanan ini.</p>
-                                                                                                                                                                                              <div class="cta">
-                                                                                                                                                                                                      <a class="btn" href="#story">Ikuti Ceritaku</a>
-                                                                                                                                                                                                              <a style="padding:10px 14px;border-radius:10px;border:1px solid #e6e6e9;font-weight:700" href="#support">Dukung Perjalananku</a>
-                                                                                                                                                                                                                    </div>
+.projects { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; }
+.proj {
+  background: var(--card);
+  padding: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+.proj h4 { margin: 0 0 0.5rem; }
 
-                                                                                                                                                                                                                          <div style="margin-top:18px;display:flex;gap:8px">
-                                                                                                                                                                                                                                  <div class="card-hero" style="flex:1">
-                                                                                                                                                                                                                                            <div style="font-weight:700">Statistik Mingguan</div>
-                                                                                                                                                                                                                                                      <div style="display:flex;gap:14px;margin-top:10px">
-                                                                                                                                                                                                                                                                  <div>
-                                                                                                                                                                                                                                                                                <div style="font-size:18px;font-weight:800">Rp1.500.000</div>
-                                                                                                                                                                                                                                                                                              <div class="muted">Pendapatan / minggu</div>
-                                                                                                                                                                                                                                                                                                          </div>
-                                                                                                                                                                                                                                                                                                                      <div>
-                                                                                                                                                                                                                                                                                                                                    <div style="font-size:18px;font-weight:800">120</div>
-                                                                                                                                                                                                                                                                                                                                                  <div class="muted">Order / minggu</div>
-                                                                                                                                                                                                                                                                                                                                                              </div>
+.testi { display: grid; gap: 0.75rem; }
+.t {
+  background: var(--card);
+  padding: 1rem;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+}
+
+.final-cta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(90deg, #ecfdf5, #ffffff);
+  padding: 1.5rem;
+  border-radius: 12px;
+  gap: 1rem;
+}
+
+footer {
+  margin-top: 2rem;
+  padding: 2rem 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero { grid-template-columns: 1fr; text-align: center; }
+  .hero h1 { font-size: 1.6rem; }
+  .stats { justify-content: center; }
+  nav { display: none; }
+}
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="logo">HJ</div>
+        <div>
+          <div style="font-weight:800">Haris — Ojol Diaries</div>
+          <div class="muted" style="font-size:13px">Driver | Penulis Ebook | Pecinta Kopi</div>
+        </div>
+      </div>
+      <nav>
+        <a href="#about">About</a>
+        <a href="#story">Keseharian</a>
+        <a href="#projects">Proyek</a>
+        <a href="#contact">Kontak</a>
+        <a class="btn" href="#support">Dukung</a>
+      </nav>
+    </header><main>
+  <!-- HERO -->
+  <section class="hero">
+    <div>
+      <h1>Hidup di Jalanan, Ngejar Mimpi di Setiap Orderan 🚦</h1>
+      <p>Cerita saya sebagai driver ojol: dari orderan unik sampai mimpi yang sedang dibangun. Ikuti perjalanan ini.</p>
+      <div class="cta">
+        <a class="btn" href="#story">Ikuti Ceritaku</a>
+        <a style="padding:0.6rem 1rem;border-radius:8px;border:1px solid #ddd;font-weight:600" href="#support">Dukung Saya</a>
+      </div>
+      <div class="stats">
+        <div class="stat"><strong>Rp1.500.000</strong><span>/ minggu</span></div>
+        <div class="stat"><strong>120</strong><span>Order</span></div>
+      </div>
+    </div>
+    <div>
+      <img src="assets/hero.jpg" alt="Foto Haris dengan motor">
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-title">Tentang Saya</div>
+    <div class="about">
+      <img src="assets/avatar.jpg" alt="Foto Haris">
+      <p>Hai, saya <strong>Haris</strong>. Sehari-hari saya driver ojol di Balikpapan. Lewat website ini saya berbagi cerita, proyek, dan peluang dukungan — lewat ebook, kopi botol, atau program investasi kecil.</p>
+    </div>
+  </section>
+
+  <!-- TIMELINE -->
+  <section id="story">
+    <div class="section-title">Keseharian</div>
+    <div class="timeline">
+      <div class="step"><strong>Pagi</strong> — Cek motor, isi bensin, kopi dulu.</div>
+      <div class="step"><strong>Siang</strong> — Istirahat, ngetik ide ebook, foto konten.</div>
+      <div class="step"><strong>Sore</strong> — Jam sibuk, orderan padat. Safety first!</div>
+      <div class="step"><strong>Malam</strong> — Pulang, catat penghasilan, istirahat.</div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section>
+    <div class="section-title">Galeri</div>
+    <div class="gallery">
+      <img src="assets/gallery1.jpg" alt="Gallery 1">
+      <img src="assets/gallery2.jpg" alt="Gallery 2">
+      <img src="assets/gallery3.jpg" alt="Gallery 3">
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="section-title">Proyek & Mimpi</div>
+    <div class="projects">
+      <div class="proj">
+        <h4>Ebook: Cuan Sambil Ngegas</h4>
+        <p>Panduan jadi driver ojol & jualan online. <strong>Rp45.000</strong></p>
+        <a href="#" class="btn" style="margin-top:0.5rem;display:inline-block;">Beli</a>
+      </div>
+      <div class="proj">
+        <h4>Kopi Botol — Tuang Rasa</h4>
+        <p>Kopi botolan rasa aren & kelapa. Segar & praktis.</p>
+        <a href="#" class="btn" style="margin-top:0.5rem;display:inline-block;">Pesan</a>
+      </div>
+      <div class="proj">
+        <h4>Program Investasi Ojol</h4>
+        <p>Investor bisa bantu modal, dapat bagi hasil. Periode 6 bulan.</p>
+        <a href="#support" class="btn" style="margin-top:0.5rem;display:inline-block;">Info</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONI -->
+  <section>
+    <div class="section-title">Testimoni</div>
+    <div class="testi">
+      <div class="t"><strong>Rina</strong> — "Mas Haris ramah & cepat, recommended!"</div>
+      <div class="t"><strong>Anton</strong> — "Ebooknya bermanfaat banget. Banyak tips berguna."</div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section id="support">
+    <div class="final-cta">
+      <div>
+        <div style="font-weight:800;font-size:1.1rem;">Mau dukung perjalanan ini?</div>
+        <div class="muted">Bisa lewat beli ebook, pesan kopi, atau donasi kecil.</div>
+      </div>
+      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;">
+        <a class="btn" href="#contact">Hubungi</a>
+        <a style="padding:0.6rem 1rem;border-radius:8px;border:1px solid #ddd;font-weight:600" href="#">Donasi</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="section-title">Kontak</div>
+    <p>Hubungi saya via WhatsApp, Instagram, atau Tiktok:</p>
+    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;">
+      <a class="btn" href="https://wa.me/62">WhatsApp</a>
+      <a class="btn" href="#">Instagram</a>
+      <a class="btn" href="#">Tiktok</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  © 2025 Haris — Ojol Diaries. Dibuat dengan semangat. Ganti teks & foto sesuai kebutuhan.
+</footer>
+
+  </div>
+</body>
+</html>                                                                                                                                                                                                                                                                                                                                                              </div>
                                                                                                                                                                                                                                                                                                                                                                         </div>
                                                                                                                                                                                                                                                                                                                                                                                 </div>
                                                                                                                                                                                                                                                                                                                                                                                         <div style="width:200px;align-self:center" class="muted">Ganti foto hero: <br><small>assets/hero.jpg</small></div>
