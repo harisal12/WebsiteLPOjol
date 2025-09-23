@@ -21,6 +21,7 @@
       width:100%; border-radius:12px;
       box-shadow:0 4px 10px rgba(0,0,0,0.1);
       transition: transform 0.3s;
+      cursor:pointer;
     }
     .gallery img:hover {transform:scale(1.05);}
     a.back {
@@ -30,6 +31,44 @@
       font-weight:bold;
     }
     a.back:hover {background:#138d75;}
+
+    /* Lightbox */
+    .lightbox {
+      display:none; position:fixed; z-index:2000;
+      top:0; left:0; width:100%; height:100%;
+      background:rgba(0,0,0,0.9);
+      justify-content:center; align-items:center;
+      flex-direction:column;
+    }
+    .lightbox img {
+      max-width:90%; max-height:70%; border-radius:12px;
+      box-shadow:0 4px 20px rgba(0,0,0,0.5);
+      opacity:0; transition:opacity 0.5s ease-in-out;
+    }
+    .lightbox img.show {
+      opacity:1;
+    }
+    .lightbox .caption {
+      margin-top:20px; color:#fff; font-size:1.1em;
+      opacity:0; transition:opacity 0.5s ease-in-out;
+    }
+    .lightbox .caption.show {
+      opacity:1;
+    }
+    .lightbox .close, .lightbox .prev, .lightbox .next {
+      position:absolute; top:50%; transform:translateY(-50%);
+      color:#fff; font-size:2em; font-weight:bold;
+      background:rgba(0,0,0,0.5); border-radius:50%;
+      padding:10px 15px; cursor:pointer; user-select:none;
+    }
+    .lightbox .close {
+      top:20px; right:20px; transform:none; font-size:2.5em;
+    }
+    .lightbox .prev {left:20px;}
+    .lightbox .next {right:20px;}
+    .lightbox .close:hover, .lightbox .prev:hover, .lightbox .next:hover {
+      background:rgba(0,0,0,0.8);
+    }
   </style>
 </head>
 <body>
@@ -41,15 +80,85 @@
   <section>
     <h2>Galeri Lengkap</h2>
     <div class="gallery">
-      <img src="assets/AO1.jpg" alt="Aktivitas 1">
-      <img src="assets/AO2.jpg" alt="Aktivitas 2">
-      <img src="assets/AO3.jpg" alt="Aktivitas 3">
-      <img src="assets/AO4.jpg" alt="Aktivitas 4">
-      <img src="assets/AO5.jpg" alt="Aktivitas 5">
-      <img src="assets/AO6.jpg" alt="Aktivitas 6">
-      <!-- tambah foto lain di folder assets -->
+      <img src="assets/AO1.jpg" alt="Menjemput penumpang pagi hari">
+      <img src="assets/AO2.jpg" alt="Mengantar makanan customer">
+      <img src="assets/AO3.jpg" alt="Istirahat sebentar sambil ngopi">
+      <img src="assets/AO4.jpg" alt="Mengantar paket barang">
+      <img src="assets/AO5.jpg" alt="Suasana jalanan Balikpapan sore hari">
+      <img src="assets/AO6.jpg" alt="Foto bareng teman ojol">
     </div>
     <a href="index.html" class="back">← Kembali ke Beranda</a>
   </section>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <span class="close" onclick="closeLightbox()">&times;</span>
+    <span class="prev" onclick="changeSlide(-1)">&#10094;</span>
+    <img id="lightbox-img" src="">
+    <span class="next" onclick="changeSlide(1)">&#10095;</span>
+    <div class="caption" id="lightbox-caption"></div>
+  </div>
+
+  <script>
+    const images = document.querySelectorAll('.gallery img');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxCaption = document.getElementById('lightbox-caption');
+    let currentIndex = 0;
+
+    images.forEach((img, index) => {
+      img.addEventListener('click', () => {
+        currentIndex = index;
+        showLightbox();
+      });
+    });
+
+    function showLightbox() {
+      lightbox.style.display = 'flex';
+      updateContent();
+    }
+
+    function closeLightbox() {
+      lightbox.style.display = 'none';
+    }
+
+    function changeSlide(step) {
+      currentIndex = (currentIndex + step + images.length) % images.length;
+      updateContent();
+    }
+
+    function updateContent() {
+      // animasi fade-out
+      lightboxImg.classList.remove('show');
+      lightboxCaption.classList.remove('show');
+
+      setTimeout(() => {
+        lightboxImg.src = images[currentIndex].src;
+        lightboxCaption.textContent = images[currentIndex].alt;
+        // animasi fade-in
+        lightboxImg.classList.add('show');
+        lightboxCaption.classList.add('show');
+      }, 100);
+    }
+
+    // Tutup lightbox jika klik background
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) closeLightbox();
+    });
+
+    // Swipe support untuk HP
+    let startX = 0;
+    lightboxImg.addEventListener('touchstart', (e) => {
+      startX = e.touches[0].clientX;
+    });
+    lightboxImg.addEventListener('touchend', (e) => {
+      let endX = e.changedTouches[0].clientX;
+      if (startX - endX > 50) {
+        changeSlide(1); // swipe kiri → next
+      } else if (endX - startX > 50) {
+        changeSlide(-1); // swipe kanan → prev
+      }
+    });
+  </script>
 </body>
 </html>
