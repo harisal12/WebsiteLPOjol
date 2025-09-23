@@ -73,9 +73,9 @@
   </header>
 
   <section>
-    <h2>Pilih Cara Donasi</h2>
+    <h2>Pilih Cara Dukung Saya</h2>
     <div class="donate-box">
-      <p>Kamu bisa berdonasi lewat transfer langsung atau QRIS. Dukunganmu sangat berarti 🙏</p>
+      <p>Kamu bisa mendukung lewat transfer langsung atau QRIS. Dukunganmu sangat berarti 🙏</p>
       
       <div class="donate-options">
         <div class="donate-card">
@@ -95,7 +95,7 @@
 
       <!-- Form WhatsApp -->
       <form class="wa-form" onsubmit="sendToWA(event)">
-        <h2>Konfirmasi Donasi</h2>
+        <h2>Konfirmasi Dukungan</h2>
         <label for="nama">Nama</label>
         <input type="text" id="nama" placeholder="Nama kamu" required>
 
@@ -116,7 +116,7 @@
     e.preventDefault();
     const nama = document.getElementById("nama").value;
     const jumlah = document.getElementById("jumlah").value;
-    const pesan = `Halo Haris, saya sudah donasi.\n\nNama: ${nama}\nJumlah: ${jumlah}\n\nSaya juga akan kirim bukti transfer di chat ini.`;
+    const pesan = `Halo Haris, saya sudah mendukung anda.\n\nNama: ${nama}\nJumlah: ${jumlah}\n\nSaya juga akan kirim bukti transfer di chat ini.\n\nGood Luck ☺️`;
     const url = "https://wa.me/628563716270?text=" + encodeURIComponent(pesan);
 
     // buka WhatsApp
