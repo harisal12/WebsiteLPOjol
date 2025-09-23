@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dukung Haris - Donasi</title>
+  <style>
+    * {margin:0; padding:0; box-sizing:border-box;}
+    body {font-family: Arial, sans-serif; line-height:1.6; color:#333; background:#f9f9f9;}
+
+    header {
+      background: linear-gradient(to right, #16a085, #1abc9c);
+      color:#fff; text-align:center;
+      padding:60px 20px;
+    }
+    header h1 {font-size:2.5em; margin-bottom:10px;}
+    header p {font-size:1.2em;}
+
+    section {padding:60px 20px; max-width:800px; margin:auto; text-align:center;}
+    section h2 {font-size:2em; color:#16a085; margin-bottom:20px;}
+
+    .donate-box {
+      background:#fff;
+      border-radius:16px;
+      box-shadow:0 4px 10px rgba(0,0,0,0.1);
+      padding:30px;
+      margin-top:30px;
+    }
+    .donate-options {
+      display:flex; flex-wrap:wrap; justify-content:center; gap:20px;
+      margin-top:20px;
+    }
+    .donate-card {
+      flex:1 1 200px;
+      background:#16a085; color:#fff;
+      padding:20px; border-radius:12px;
+      transition:0.3s; cursor:pointer;
+    }
+    .donate-card:hover {background:#138d75; transform:translateY(-5px);}
+    .donate-card h3 {margin-bottom:10px;}
+
+    .qr {margin-top:30px;}
+    .qr img {
+      width:200px; height:200px;
+      border-radius:12px; box-shadow:0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    /* Form WhatsApp */
+    .wa-form {
+      margin-top:40px; text-align:left;
+    }
+    .wa-form label {font-weight:bold; display:block; margin-bottom:8px;}
+    .wa-form input {
+      width:100%; padding:12px; margin-bottom:15px;
+      border:1px solid #ccc; border-radius:8px;
+    }
+    .wa-form button {
+      width:100%; padding:12px;
+      background:#16a085; color:#fff; font-weight:bold;
+      border:none; border-radius:8px; cursor:pointer; transition:0.3s;
+    }
+    .wa-form button:hover {background:#138d75;}
+
+    footer {
+      background:#16a085; color:#fff; text-align:center; padding:20px; margin-top:60px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Dukung Perjalanan Haris 🚴‍♂️</h1>
+    <p>Setiap donasi berarti bahan bakar semangat saya 💚</p>
+  </header>
+
+  <section>
+    <h2>Pilih Cara Donasi</h2>
+    <div class="donate-box">
+      <p>Kamu bisa berdonasi lewat transfer langsung atau QRIS. Dukunganmu sangat berarti 🙏</p>
+      
+      <div class="donate-options">
+        <div class="donate-card">
+          <h3>💳 Transfer Bank</h3>
+          <p>BCA 7815440633<br>a.n Haris Al Muksin Ajis</p>
+        </div>
+        <div class="donate-card">
+          <h3>📱 E-Wallet</h3>
+          <p>Gopay / Dana <br>0877-7934-5025</p>
+        </div>
+      </div>
+
+      <div class="qr">
+        <h3>Scan QRIS</h3>
+        <img src="assets/qris.jpg" alt="QRIS Donasi">
+      </div>
+
+      <!-- Form WhatsApp -->
+      <form class="wa-form" onsubmit="sendToWA(event)">
+        <h2>Konfirmasi Donasi</h2>
+        <label for="nama">Nama</label>
+        <input type="text" id="nama" placeholder="Nama kamu" required>
+
+        <label for="jumlah">Jumlah Donasi</label>
+        <input type="text" id="jumlah" placeholder="Contoh: Rp10.000" required>
+
+        <button type="submit">Kirim Konfirmasi via WhatsApp</button>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 Haris Al • Terima kasih atas dukunganmu 💚</p>
+  </footer>
+
+  <script>
+  function sendToWA(e) {
+    e.preventDefault();
+    const nama = document.getElementById("nama").value;
+    const jumlah = document.getElementById("jumlah").value;
+    const pesan = `Halo Haris, saya sudah donasi.\n\nNama: ${nama}\nJumlah: ${jumlah}\n\nSaya juga akan kirim bukti transfer di chat ini.`;
+    const url = "https://wa.me/628563716270?text=" + encodeURIComponent(pesan);
+
+    // buka WhatsApp
+    window.open(url, "_blank");
+
+    // redirect ke halaman terima kasih
+    setTimeout(() => {
+      window.location.href = "thankyou.html";
+    }, 1500); // delay biar WhatsApp kebuka dulu
+  }
+</script>
+</body>
+</html>
