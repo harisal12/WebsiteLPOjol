@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Cerita Ojolku - Menemukan HP Penumpang</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
+      font-family: "Poppins", Arial, sans-serif;
       line-height: 1.8;
       color: #333;
       margin: 0;
@@ -45,7 +45,7 @@
       background: white;
       padding: 30px;
       border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     }
     main img {
       width: 100%;
@@ -89,9 +89,24 @@
       border-radius: 8px;
       cursor: pointer;
       font-weight: bold;
+      transition: 0.3s;
     }
-    .comment-form button:hover {
-      background: #138d75;
+    .comment-form button.loading {
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
+    .comment-form button.loading::after {
+      content: "⏳";
+      margin-left: 10px;
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
     }
     .comments-list {
       margin-top: 20px;
@@ -104,7 +119,7 @@
       border-radius: 10px;
       padding: 10px 15px;
       margin-bottom: 10px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
     }
     .comment small {
       color: gray;
@@ -121,6 +136,27 @@
       color: #fff;
       text-decoration: underline;
     }
+
+    /* Pop-up sukses */
+    .popup {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.8);
+      background: #16a085;
+      color: white;
+      padding: 20px 30px;
+      border-radius: 12px;
+      font-weight: bold;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      opacity: 0;
+      transition: all 0.3s ease;
+      z-index: 9999;
+    }
+    .popup.show {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
   </style>
 </head>
 <body>
@@ -131,7 +167,7 @@
   </header>
 
   <main>
-    <img src="assets/cerita1.jpg" alt="Cerita Ojol Menemukan HP Penumpang">
+    <img src="assets/cerita1.jpg" alt="Cerita Ojol Menemukan HP Penumpang" />
 
     <div class="highlight">✨ Cerita Inspiratif Hari Ini ✨</div>
 
@@ -159,8 +195,10 @@
       Kami menutup hari ini dengan selfie bahagia — bukan karena hp yang kembali saja, tapi karena hati kami juga ikut hangat. 💚📸
     </p>
 
-    <p><b>Kadang, kebaikan kecil bisa jadi cerita besar.</b><br>
-    Dan hari ini saya belajar: membantu orang lain juga bisa jadi rezeki terbaik. ✨</p>
+    <p>
+      <b>Kadang, kebaikan kecil bisa jadi cerita besar.</b><br />
+      Dan hari ini saya belajar: membantu orang lain juga bisa jadi rezeki terbaik. ✨
+    </p>
 
     <p><b>— Haris Al, Driver Ojol Balikpapan 🚴‍♂️</b></p>
 
@@ -168,11 +206,11 @@
     <div class="comment-section">
       <h3>Tinggalkan Komentar</h3>
       <div class="comment-form">
-        <input type="text" id="nameInput" placeholder="Nama kamu...">
+        <input type="text" id="nameInput" placeholder="Nama kamu..." />
         <textarea id="commentInput" placeholder="Tulis komentar kamu di sini..."></textarea>
-        <button onclick="submitComment()">Kirim Komentar</button>
+        <button id="sendBtn" onclick="submitComment()">Kirim Komentar</button>
       </div>
-      <div id="commentMessage" style="margin-top:15px; font-weight:bold; color:#16a085;"></div>
+      <div id="commentMessage" style="margin-top:15px; font-weight:bold;"></div>
 
       <h3 style="margin-top:40px;">Komentar Pembaca</h3>
       <div id="commentsList" class="comments-list">
@@ -185,67 +223,89 @@
     <p>© 2025 Haris Al • Dibuat dengan ❤️ | <a href="index.html">Kembali ke Website Utama</a></p>
   </footer>
 
+  <div id="popup" class="popup">🎉 Komentar berhasil dikirim!</div>
+
   <script>
-  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz-3qddfel9EXv7b4kYo6nug9KzIYXy_hfk9yzFpGGZkwfE9iVVbN8kbtm6m7Le6Sxy/exec"; // ← ganti dengan URL dari Google Apps Script kamu
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbznuvnlLMONoKaR1HKUa7TR1Sym2F0nVgoTbp-gNg1rymqd822T-Z79f1RaHoqmkZ09/exec"; // ganti dengan URL Web App kamu
 
-  // === Kirim Komentar ===
-  async function submitComment() {
-    const name = document.getElementById("nameInput").value.trim();
-    const comment = document.getElementById("commentInput").value.trim();
-    const msg = document.getElementById("commentMessage");
+    async function submitComment() {
+      const name = document.getElementById("nameInput").value.trim();
+      const comment = document.getElementById("commentInput").value.trim();
+      const msg = document.getElementById("commentMessage");
+      const btn = document.getElementById("sendBtn");
 
-    if (!name || !comment) {
-      msg.style.color = "red";
-      msg.textContent = "Nama dan komentar tidak boleh kosong!";
-      return;
-    }
-
-    msg.style.color = "#16a085";
-    msg.textContent = "Mengirim komentar...";
-
-    try {
-      await fetch(SCRIPT_URL, {
-        method: "POST",
-        body: JSON.stringify({ name, comment }),
-        headers: { "Content-Type": "application/json" }
-      });
-      msg.textContent = "Terima kasih! Komentarmu sudah terkirim 🙌";
-      document.getElementById("nameInput").value = "";
-      document.getElementById("commentInput").value = "";
-      loadComments(); // refresh daftar komentar
-    } catch (err) {
-      msg.style.color = "red";
-      msg.textContent = "Gagal mengirim komentar. Coba lagi nanti.";
-    }
-  }
-
-  // === Tampilkan Komentar dari Google Sheet ===
-  async function loadComments() {
-    const list = document.getElementById("commentsList");
-    list.innerHTML = "<p><i>Memuat komentar...</i></p>";
-
-    try {
-      const res = await fetch(SCRIPT_URL);
-      const data = await res.json();
-
-      if (data.length === 0) {
-        list.innerHTML = "<p><i>Belum ada komentar. Jadilah yang pertama!</i></p>";
+      if (!name || !comment) {
+        msg.style.color = "red";
+        msg.textContent = "Nama dan komentar tidak boleh kosong!";
         return;
       }
 
-      list.innerHTML = "";
-      data.reverse().forEach(item => {
-        const div = document.createElement("div");
-        div.className = "comment";
-        div.innerHTML = `<b>${item.nama}</b><br>${item.komentar}<br><small>${new Date(item.waktu).toLocaleString()}</small>`;
-        list.appendChild(div);
-      });
-    } catch (err) {
-      list.innerHTML = "<p style='color:red;'>Gagal memuat komentar 😢</p>";
-    }
-  }
+      msg.style.color = "#16a085";
+      msg.textContent = "Mengirim komentar...";
+      btn.classList.add("loading");
 
-  loadComments();
+      try {
+        const res = await fetch(SCRIPT_URL, {
+          method: "POST",
+          body: JSON.stringify({ name, comment }),
+          headers: { "Content-Type": "application/json" },
+        });
+
+        const data = await res.json();
+
+        if (data.status === "success") {
+          showPopup();
+          msg.textContent = "";
+          document.getElementById("nameInput").value = "";
+          document.getElementById("commentInput").value = "";
+          loadComments();
+        } else {
+          throw new Error(data.message);
+        }
+      } catch (err) {
+        msg.style.color = "red";
+        msg.textContent = "❌ Gagal mengirim komentar. Coba lagi nanti.";
+      } finally {
+        btn.classList.remove("loading");
+      }
+    }
+
+    async function loadComments() {
+      const list = document.getElementById("commentsList");
+      list.innerHTML = "<p><i>Memuat komentar...</i></p>";
+
+      try {
+        const res = await fetch(SCRIPT_URL);
+        const data = await res.json();
+
+        if (!Array.isArray(data) || data.length === 0) {
+          list.innerHTML = "<p><i>Belum ada komentar. Jadilah yang pertama!</i></p>";
+          return;
+        }
+
+        list.innerHTML = "";
+        data.reverse().forEach((item) => {
+          const waktu = new Date(item.waktu).toLocaleString("id-ID", {
+            dateStyle: "medium",
+            timeStyle: "short",
+          });
+          const div = document.createElement("div");
+          div.className = "comment";
+          div.innerHTML = `<b>${item.nama}</b><br>${item.komentar}<br><small>${waktu}</small>`;
+          list.appendChild(div);
+        });
+      } catch {
+        list.innerHTML = "<p style='color:red;'>Gagal memuat komentar 😢</p>";
+      }
+    }
+
+    function showPopup() {
+      const popup = document.getElementById("popup");
+      popup.classList.add("show");
+      setTimeout(() => popup.classList.remove("show"), 2500);
+    }
+
+    loadComments();
   </script>
 </body>
 </html>
