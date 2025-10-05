@@ -5,96 +5,43 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Cerita Ojolku - Menemukan HP Penumpang</title>
   <style>
-    body {
-      font-family: "Poppins", Arial, sans-serif;
-      line-height: 1.8;
-      color: #333;
-      background: #f7f8fa;
-      margin: 0;
-      padding: 0;
-    }
+    body { font-family: "Poppins", Arial, sans-serif; background: #f7f8fa; margin: 0; color: #333; }
     header {
       background: linear-gradient(to right, #16a085, #1abc9c);
-      color: white;
-      padding: 40px 20px;
-      text-align: center;
+      color: white; text-align: center; padding: 40px 20px;
     }
-    header h1 { margin: 0; font-size: 2em; }
-    header p { margin: 8px 0; font-size: 1.1em; }
     header a {
-      display: inline-block;
-      margin-top: 10px;
-      padding: 10px 20px;
-      background: #fff;
-      color: #16a085;
-      text-decoration: none;
-      border-radius: 30px;
-      font-weight: bold;
+      background: #fff; color: #16a085; padding: 8px 18px;
+      border-radius: 20px; text-decoration: none; display: inline-block; margin-top: 10px;
     }
     main {
-      max-width: 800px;
-      margin: 30px auto;
-      background: #fff;
-      padding: 25px;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      max-width: 800px; margin: 30px auto; background: white;
+      border-radius: 12px; box-shadow: 0 3px 10px rgba(0,0,0,0.1); padding: 25px;
     }
-    img { width: 100%; border-radius: 12px; margin-bottom: 25px; }
-    .comment-section { margin-top: 50px; }
+    img { width: 100%; border-radius: 12px; margin-bottom: 20px; }
+    .comment-section { margin-top: 40px; }
     .comment-form input, .comment-form textarea {
-      width: 100%;
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 10px;
-      margin-bottom: 10px;
+      width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 10px; margin-bottom: 10px;
     }
     .comment-form button {
-      background: #16a085;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: bold;
+      background: #16a085; color: white; border: none;
+      padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: bold;
     }
-    .comment { 
-      display: flex; 
-      gap: 10px; 
-      background: #fafafa;
-      border-radius: 10px;
-      padding: 10px;
-      margin-bottom: 10px;
-    }
+    .comment { background: #fafafa; border-radius: 10px; padding: 10px; margin-bottom: 10px; display: flex; gap: 10px; }
     .avatar {
-      width: 40px; height: 40px;
-      background: #1abc9c; color: white;
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-weight: bold; font-size: 15px;
+      width: 40px; height: 40px; border-radius: 50%;
+      background: #1abc9c; color: white; display: flex;
+      align-items: center; justify-content: center; font-weight: bold;
       flex-shrink: 0;
     }
     .comment-content { flex: 1; }
-    .reply-thread {
-      margin-left: 50px;
-      border-left: 3px solid #16a085;
-      padding-left: 15px;
-      margin-top: 8px;
-    }
     .reply-btn {
-      background: none;
-      border: none;
-      color: #16a085;
-      cursor: pointer;
-      padding: 0;
-      font-size: 13px;
-      margin-top: 3px;
+      background: none; border: none; color: #16a085;
+      cursor: pointer; font-size: 13px; margin-top: 5px;
     }
+    .reply-thread { margin-left: 50px; border-left: 3px solid #16a085; padding-left: 15px; }
     footer {
-      background: #16a085;
-      color: white;
-      text-align: center;
-      padding: 15px;
-      margin-top: 40px;
+      background: #16a085; color: #fff; text-align: center; padding: 15px; margin-top: 50px;
     }
     @media (max-width: 600px) {
       main { padding: 20px; }
@@ -119,9 +66,6 @@
     </p>
     <p>
       Sesampainya di lokasi, hp dicoba dibunyikan, tapi tidak terdengar. Akhirnya saya coba menelepon nomor itu — dan ternyata diangkat oleh seorang ibu-ibu. Tak lama kemudian, ibu tersebut keluar rumah sambil membawa hp itu. <b>Subhanallah, hp customer saya kembali dengan selamat 🙏📱.</b>
-    </p>
-    <p>
-      Rasa syukur dan lega langsung terasa. Customer saya tersenyum lebar, saya pun ikut bahagia. Ternyata, masih banyak orang baik di sekitar kita yang dengan tulus mau membantu tanpa pamrih.
     </p>
     <p><b>— Haris Al, Driver Ojol Balikpapan 🚴‍♂️</b></p>
 
@@ -149,14 +93,14 @@
 
     function jsonpRequest(url, params = {}) {
       return new Promise((resolve, reject) => {
-        const cbName = "cb_" + Math.random().toString(36).substr(2);
-        params.callback = cbName;
-        const query = new URLSearchParams(params).toString();
-        const script = document.createElement("script");
-        window[cbName] = data => { resolve(data); script.remove(); delete window[cbName]; };
-        script.onerror = () => reject("JSONP failed");
-        script.src = url + "?" + query;
-        document.body.appendChild(script);
+        const cb = "cb_" + Math.random().toString(36).slice(2);
+        params.callback = cb;
+        const q = new URLSearchParams(params).toString();
+        const s = document.createElement("script");
+        window[cb] = data => { resolve(data); s.remove(); delete window[cb]; };
+        s.onerror = () => reject("JSONP failed");
+        s.src = url + "?" + q;
+        document.body.appendChild(s);
       });
     }
 
@@ -165,22 +109,17 @@
       list.innerHTML = "<p><i>Memuat komentar...</i></p>";
       try {
         const data = await jsonpRequest(SCRIPT_URL);
-        if (!Array.isArray(data) || data.length === 0) {
-          list.innerHTML = "<p><i>Belum ada komentar.</i></p>";
-          return;
-        }
-        renderComments(data);
+        list.innerHTML = "";
+        renderThread(list, data, "");
       } catch {
-        list.innerHTML = "<p style='color:red;'>Gagal memuat komentar.</p>";
+        list.innerHTML = "<p style='color:red;'>Gagal memuat komentar 😢</p>";
       }
     }
 
-    function renderComments(data) {
-      const list = document.getElementById("commentsList");
-      const top = data.filter(c => !c.parent);
-      const replies = data.filter(c => c.parent);
-      list.innerHTML = "";
-      top.reverse().forEach(item => {
+    // Recursive render for nested reply
+    function renderThread(container, data, parentId) {
+      const nodes = data.filter(c => c.parent === parentId);
+      nodes.reverse().forEach(item => {
         const div = document.createElement("div");
         div.className = "comment";
         div.innerHTML = `
@@ -190,20 +129,15 @@
             <small>${new Date(item.waktu).toLocaleString("id-ID")}</small><br>
             <button class="reply-btn" onclick="reply('${item.id}','${item.nama}')">💬 Balas</button>
           </div>`;
-        const childWrap = document.createElement("div");
-        childWrap.className = "reply-thread";
-        replies.filter(r => r.parent == item.id).forEach(rep => {
-          childWrap.innerHTML += `
-            <div class="comment">
-              <div class="avatar" style="background:#138d75;">${rep.nama.charAt(0).toUpperCase()}</div>
-              <div class="comment-content">
-                <b>${rep.nama}</b><br>${rep.komentar}<br>
-                <small>${new Date(rep.waktu).toLocaleString("id-ID")}</small>
-              </div>
-            </div>`;
-        });
-        if (childWrap.innerHTML) div.appendChild(childWrap);
-        list.appendChild(div);
+        container.appendChild(div);
+        // cari anak dari komentar ini
+        const replies = data.filter(r => r.parent == item.id);
+        if (replies.length > 0) {
+          const childContainer = document.createElement("div");
+          childContainer.className = "reply-thread";
+          div.appendChild(childContainer);
+          renderThread(childContainer, data, item.id);
+        }
       });
     }
 
@@ -220,14 +154,17 @@
       const comment = document.getElementById("commentInput").value.trim();
       const msg = document.getElementById("commentMessage");
       const btn = document.getElementById("sendBtn");
+
       if (!name || !comment) {
         msg.style.color = "red";
         msg.textContent = "Nama dan komentar tidak boleh kosong!";
         return;
       }
+
       msg.style.color = "#16a085";
       msg.textContent = "Mengirim komentar...";
-      btn.classList.add("loading");
+      btn.disabled = true;
+
       try {
         const res = await jsonpRequest(SCRIPT_URL, { action: "post", name, comment, parent: replyTo });
         if (res.status === "success") {
@@ -235,13 +172,13 @@
           document.getElementById("nameInput").value = "";
           document.getElementById("commentInput").value = "";
           msg.textContent = "";
-          await loadComments();
+          loadComments();
         } else throw new Error(res.message);
       } catch {
         msg.style.color = "red";
         msg.textContent = "❌ Gagal mengirim komentar.";
       } finally {
-        btn.classList.remove("loading");
+        btn.disabled = false;
       }
     }
 
