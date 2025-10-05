@@ -95,19 +95,6 @@
       opacity: 0.7;
       cursor: not-allowed;
     }
-    .comment-form button.loading::after {
-      content: "⏳";
-      margin-left: 10px;
-      animation: spin 1s linear infinite;
-    }
-    @keyframes spin {
-      from {
-        transform: rotate(0deg);
-      }
-      to {
-        transform: rotate(360deg);
-      }
-    }
     .comments-list {
       margin-top: 20px;
       background: #f1f1f1;
@@ -136,8 +123,6 @@
       color: #fff;
       text-decoration: underline;
     }
-
-    /* Pop-up sukses */
     .popup {
       position: fixed;
       top: 50%;
@@ -168,9 +153,9 @@
 
   <main>
     <img src="assets/cerita1.jpg" alt="Cerita Ojol Menemukan HP Penumpang" />
-
     <div class="highlight">✨ Cerita Inspiratif Hari Ini ✨</div>
 
+    <!-- Cerita tetap sama, tidak diubah -->
     <p>
       Siang ini saya lagi narik Gojek Bike. Saat tiba di titik jemput di Balikpapan Baru, depan Kimia Farma, customer saya langsung bercerita kalau dia baru saja kehilangan handphone di angkot. Wajahnya terlihat panik — dan saya tahu betul rasanya kehilangan barang berharga.
     </p>
@@ -226,7 +211,62 @@
   <div id="popup" class="popup">🎉 Komentar berhasil dikirim!</div>
 
   <script>
-    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbznuvnlLMONoKaR1HKUa7TR1Sym2F0nVgoTbp-gNg1rymqd822T-Z79f1RaHoqmkZ09/exec"; // ganti dengan URL Web App kamu
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbznuvnlLMONoKaR1HKUa7TR1Sym2F0nVgoTbp-gNg1rymqd822T-Z79f1RaHoqmkZ09/exec";
+
+    // JSONP helper
+    function jsonpRequest(url, params = {}) {
+      return new Promise((resolve, reject) => {
+        const callbackName = "cb_" + Math.random().toString(36).slice(2);
+        params.callback = callbackName;
+        const query = new URLSearchParams(params).toString();
+        const script = document.createElement("script");
+
+        window[callbackName] = function (data) {
+          resolve(data);
+          script.remove();
+          delete window[callbackName];
+        };
+
+        script.onerror = () => {
+          reject(new Error("JSONP failed"));
+          script.remove();
+          delete window[callbackName];
+        };
+
+        script.src = url + "?" + query;
+        document.body.appendChild(script);
+      });
+    }
+
+    function showPopup() {
+      const popup = document.getElementById("popup");
+      popup.classList.add("show");
+      setTimeout(() => popup.classList.remove("show"), 2500);
+    }
+
+    async function loadComments() {
+      const list = document.getElementById("commentsList");
+      list.innerHTML = "<p><i>Memuat komentar...</i></p>";
+
+      try {
+        const data = await jsonpRequest(SCRIPT_URL);
+        if (!Array.isArray(data) || data.length === 0) {
+          list.innerHTML = "<p><i>Belum ada komentar. Jadilah yang pertama!</i></p>";
+          return;
+        }
+
+        list.innerHTML = "";
+        data.reverse().forEach(item => {
+          const waktu = new Date(item.waktu).toLocaleString("id-ID", { dateStyle: "medium", timeStyle: "short" });
+          const div = document.createElement("div");
+          div.className = "comment";
+          div.innerHTML = `<b>${item.nama}</b><br>${item.komentar}<br><small>${waktu}</small>`;
+          list.appendChild(div);
+        });
+      } catch {
+        list.innerHTML = "<p style='color:red;'>Gagal memuat komentar 😢</p>";
+      }
+    }
 
     async function submitComment() {
       const name = document.getElementById("nameInput").value.trim();
@@ -245,14 +285,7 @@
       btn.classList.add("loading");
 
       try {
-        const res = await fetch(SCRIPT_URL, {
-          method: "POST",
-          body: JSON.stringify({ name, comment }),
-          headers: { "Content-Type": "application/json" },
-        });
-
-        const data = await res.json();
-
+        const data = await jsonpRequest(SCRIPT_URL, { action: "post", name, comment });
         if (data.status === "success") {
           showPopup();
           msg.textContent = "";
@@ -268,41 +301,6 @@
       } finally {
         btn.classList.remove("loading");
       }
-    }
-
-    async function loadComments() {
-      const list = document.getElementById("commentsList");
-      list.innerHTML = "<p><i>Memuat komentar...</i></p>";
-
-      try {
-        const res = await fetch(SCRIPT_URL);
-        const data = await res.json();
-
-        if (!Array.isArray(data) || data.length === 0) {
-          list.innerHTML = "<p><i>Belum ada komentar. Jadilah yang pertama!</i></p>";
-          return;
-        }
-
-        list.innerHTML = "";
-        data.reverse().forEach((item) => {
-          const waktu = new Date(item.waktu).toLocaleString("id-ID", {
-            dateStyle: "medium",
-            timeStyle: "short",
-          });
-          const div = document.createElement("div");
-          div.className = "comment";
-          div.innerHTML = `<b>${item.nama}</b><br>${item.komentar}<br><small>${waktu}</small>`;
-          list.appendChild(div);
-        });
-      } catch {
-        list.innerHTML = "<p style='color:red;'>Gagal memuat komentar 😢</p>";
-      }
-    }
-
-    function showPopup() {
-      const popup = document.getElementById("popup");
-      popup.classList.add("show");
-      setTimeout(() => popup.classList.remove("show"), 2500);
     }
 
     loadComments();
