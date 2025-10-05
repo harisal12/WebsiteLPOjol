@@ -5,50 +5,208 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Cerita Ojolku - Menemukan HP Penumpang</title>
   <style>
-    body { font-family: "Poppins", Arial, sans-serif; background: #f7f8fa; margin: 0; color: #333; }
+    body {
+      font-family: "Poppins", Arial, sans-serif;
+      line-height: 1.8;
+      color: #333;
+      background: #f7f8fa;
+      margin: 0;
+      padding: 0;
+    }
+
     header {
       background: linear-gradient(to right, #16a085, #1abc9c);
-      color: white; text-align: center; padding: 40px 20px;
+      color: white;
+      padding: 40px 20px;
+      text-align: center;
     }
+
+    header h1 {
+      margin: 0;
+      font-size: 2em;
+    }
+
+    header p {
+      margin: 8px 0;
+      font-size: 1.1em;
+    }
+
     header a {
-      background: #fff; color: #16a085; padding: 8px 18px;
-      border-radius: 20px; text-decoration: none; display: inline-block; margin-top: 10px;
+      display: inline-block;
+      margin-top: 10px;
+      padding: 10px 20px;
+      background: #fff;
+      color: #16a085;
+      text-decoration: none;
+      border-radius: 30px;
+      font-weight: bold;
     }
+
     main {
-      max-width: 800px; margin: 30px auto; background: white;
-      border-radius: 12px; box-shadow: 0 3px 10px rgba(0,0,0,0.1); padding: 25px;
+      max-width: 800px;
+      margin: 40px auto;
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     }
-    img { width: 100%; border-radius: 12px; margin-bottom: 20px; }
-    .comment-section { margin-top: 40px; }
-    .comment-form input, .comment-form textarea {
-      width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 10px; margin-bottom: 10px;
+
+    main img {
+      width: 100%;
+      border-radius: 12px;
+      margin-bottom: 25px;
     }
+
+    main p {
+      text-align: justify;
+      margin-bottom: 15px;
+    }
+
+    .comment-section {
+      margin-top: 50px;
+    }
+
+    .comment-form input,
+    .comment-form textarea {
+      width: 100%;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin-bottom: 10px;
+      font-size: 1rem;
+      box-sizing: border-box;
+    }
+
     .comment-form button {
-      background: #16a085; color: white; border: none;
-      padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: bold;
+      background: #16a085;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
     }
-    .comment { background: #fafafa; border-radius: 10px; padding: 10px; margin-bottom: 10px; display: flex; gap: 10px; }
+
+    .comment-form button.loading {
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
+
+    .comments-list {
+      margin-top: 25px;
+    }
+
+    .comment {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 10px;
+      padding: 10px;
+      border-radius: 10px;
+      background: #fdfdfd;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+      word-break: break-word;
+    }
+
     .avatar {
-      width: 40px; height: 40px; border-radius: 50%;
-      background: #1abc9c; color: white; display: flex;
-      align-items: center; justify-content: center; font-weight: bold;
+      width: 40px;
+      height: 40px;
+      background: #1abc9c;
+      color: white;
+      font-weight: bold;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
       flex-shrink: 0;
     }
-    .comment-content { flex: 1; }
+
+    .comment-content {
+      flex: 1;
+    }
+
+    .comment-content b {
+      color: #2c3e50;
+    }
+
+    .comment-content small {
+      color: gray;
+      display: block;
+      margin-top: 2px;
+    }
+
     .reply-btn {
-      background: none; border: none; color: #16a085;
-      cursor: pointer; font-size: 13px; margin-top: 5px;
+      background: none;
+      border: none;
+      color: #16a085;
+      font-size: 13px;
+      cursor: pointer;
+      margin-top: 5px;
+      padding: 0;
     }
-    .reply-thread { margin-left: 50px; border-left: 3px solid #16a085; padding-left: 15px; }
+
+    .reply-thread {
+      margin-left: 40px;
+      border-left: 3px solid #16a085;
+      padding-left: 10px;
+      margin-top: 8px;
+    }
+
+    /* RESPONSIVE FIX */
+    @media (max-width: 480px) {
+      main {
+        margin: 15px;
+        padding: 15px;
+      }
+      .reply-thread {
+        margin-left: 20px;
+        padding-left: 8px;
+      }
+      .comment {
+        flex-direction: column;
+        gap: 6px;
+      }
+      .avatar {
+        width: 35px;
+        height: 35px;
+        font-size: 14px;
+      }
+    }
+
     footer {
-      background: #16a085; color: #fff; text-align: center; padding: 15px; margin-top: 50px;
+      background: #16a085;
+      color: white;
+      text-align: center;
+      padding: 20px;
     }
-    @media (max-width: 600px) {
-      main { padding: 20px; }
-      .reply-thread { margin-left: 30px; }
+
+    /* POP-UP SUCCESS */
+    #toast {
+      visibility: hidden;
+      min-width: 200px;
+      margin-left: -100px;
+      background-color: #16a085;
+      color: #fff;
+      text-align: center;
+      border-radius: 30px;
+      padding: 12px;
+      position: fixed;
+      z-index: 1;
+      left: 50%;
+      bottom: 30px;
+      font-size: 15px;
+      transition: all 0.5s ease;
+    }
+
+    #toast.show {
+      visibility: visible;
+      bottom: 50px;
+      opacity: 1;
     }
   </style>
 </head>
+
 <body>
   <header>
     <h1>Cerita Ojolku</h1>
@@ -58,6 +216,7 @@
 
   <main>
     <img src="assets/cerita1.jpg" alt="Cerita Ojol Menemukan HP Penumpang" />
+
     <p>
       Siang ini saya lagi narik Gojek Bike. Saat tiba di titik jemput di Balikpapan Baru, depan Kimia Farma, customer saya langsung bercerita kalau dia baru saja kehilangan handphone di angkot. Wajahnya terlihat panik — dan saya tahu betul rasanya kehilangan barang berharga.
     </p>
@@ -66,6 +225,19 @@
     </p>
     <p>
       Sesampainya di lokasi, hp dicoba dibunyikan, tapi tidak terdengar. Akhirnya saya coba menelepon nomor itu — dan ternyata diangkat oleh seorang ibu-ibu. Tak lama kemudian, ibu tersebut keluar rumah sambil membawa hp itu. <b>Subhanallah, hp customer saya kembali dengan selamat 🙏📱.</b>
+    </p>
+    <p>
+      Rasa syukur dan lega langsung terasa. Customer saya tersenyum lebar, saya pun ikut bahagia. Ternyata, masih banyak orang baik di sekitar kita yang dengan tulus mau membantu tanpa pamrih.
+    </p>
+    <p>
+      Dalam perjalanan pulang, saya ajari customer cara menggunakan <i>Find My Device</i>, supaya kalau suatu hari kejadian serupa terulang, dia sudah siap.
+    </p>
+    <p>
+      Kami menutup hari ini dengan selfie bahagia — bukan karena hp yang kembali saja, tapi karena hati kami juga ikut hangat. 💚📸
+    </p>
+    <p>
+      <b>Kadang, kebaikan kecil bisa jadi cerita besar.</b><br />
+      Dan hari ini saya belajar: membantu orang lain juga bisa jadi rezeki terbaik. ✨
     </p>
     <p><b>— Haris Al, Driver Ojol Balikpapan 🚴‍♂️</b></p>
 
@@ -78,8 +250,10 @@
       </div>
       <p id="commentMessage" style="font-weight:bold;"></p>
 
-      <h3 style="margin-top:30px;">Komentar Pembaca</h3>
-      <div id="commentsList"></div>
+      <h3 style="margin-top:40px;">Komentar Pembaca</h3>
+      <div id="commentsList" class="comments-list">
+        <p><i>Memuat komentar...</i></p>
+      </div>
     </div>
   </main>
 
@@ -87,20 +261,29 @@
     <p>© 2025 Haris Al • Dibuat dengan ❤️</p>
   </footer>
 
+  <!-- POPUP -->
+  <div id="toast">Komentar berhasil dikirim!</div>
+
   <script>
     const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbznuvnlLMONoKaR1HKUa7TR1Sym2F0nVgoTbp-gNg1rymqd822T-Z79f1RaHoqmkZ09/exec";
     let replyTo = "";
 
+    function showToast() {
+      const toast = document.getElementById("toast");
+      toast.classList.add("show");
+      setTimeout(() => toast.classList.remove("show"), 2500);
+    }
+
     function jsonpRequest(url, params = {}) {
       return new Promise((resolve, reject) => {
-        const cb = "cb_" + Math.random().toString(36).slice(2);
-        params.callback = cb;
-        const q = new URLSearchParams(params).toString();
-        const s = document.createElement("script");
-        window[cb] = data => { resolve(data); s.remove(); delete window[cb]; };
-        s.onerror = () => reject("JSONP failed");
-        s.src = url + "?" + q;
-        document.body.appendChild(s);
+        const callbackName = "cb_" + Math.random().toString(36).slice(2);
+        params.callback = callbackName;
+        const query = new URLSearchParams(params).toString();
+        const script = document.createElement("script");
+        window[callbackName] = data => { resolve(data); script.remove(); delete window[callbackName]; };
+        script.onerror = () => { reject(new Error("JSONP failed")); script.remove(); };
+        script.src = url + "?" + query;
+        document.body.appendChild(script);
       });
     }
 
@@ -116,7 +299,6 @@
       }
     }
 
-    // Recursive render for nested reply
     function renderThread(container, data, parentId) {
       const nodes = data.filter(c => c.parent === parentId);
       nodes.reverse().forEach(item => {
@@ -125,19 +307,18 @@
         div.innerHTML = `
           <div class="avatar">${item.nama.charAt(0).toUpperCase()}</div>
           <div class="comment-content">
-            <b>${item.nama}</b><br>${item.komentar}<br>
-            <small>${new Date(item.waktu).toLocaleString("id-ID")}</small><br>
+            <b>${item.nama}</b><br>${item.komentar}
+            <small>${new Date(item.waktu).toLocaleString("id-ID")}</small>
             <button class="reply-btn" onclick="reply('${item.id}','${item.nama}')">💬 Balas</button>
           </div>`;
-        container.appendChild(div);
-        // cari anak dari komentar ini
         const replies = data.filter(r => r.parent == item.id);
         if (replies.length > 0) {
-          const childContainer = document.createElement("div");
-          childContainer.className = "reply-thread";
-          div.appendChild(childContainer);
-          renderThread(childContainer, data, item.id);
+          const replyDiv = document.createElement("div");
+          replyDiv.className = "reply-thread";
+          renderThread(replyDiv, data, item.id);
+          div.appendChild(replyDiv);
         }
+        container.appendChild(div);
       });
     }
 
@@ -163,7 +344,7 @@
 
       msg.style.color = "#16a085";
       msg.textContent = "Mengirim komentar...";
-      btn.disabled = true;
+      btn.classList.add("loading");
 
       try {
         const res = await jsonpRequest(SCRIPT_URL, { action: "post", name, comment, parent: replyTo });
@@ -172,17 +353,18 @@
           document.getElementById("nameInput").value = "";
           document.getElementById("commentInput").value = "";
           msg.textContent = "";
+          showToast();
           loadComments();
         } else throw new Error(res.message);
       } catch {
         msg.style.color = "red";
         msg.textContent = "❌ Gagal mengirim komentar.";
       } finally {
-        btn.disabled = false;
+        btn.classList.remove("loading");
       }
     }
 
-    loadComments();
+    window.onload = loadComments;
   </script>
 </body>
 </html>
