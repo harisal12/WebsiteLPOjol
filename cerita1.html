@@ -33,29 +33,20 @@
     }
     main {
       max-width: 800px;
-      margin: 40px auto;
-      background: white;
-      padding: 30px;
+      margin: 30px auto;
+      background: #fff;
+      padding: 25px;
       border-radius: 12px;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     }
-    main img {
-      width: 100%;
-      border-radius: 12px;
-      margin-bottom: 25px;
-    }
-    main p { text-align: justify; margin-bottom: 15px; }
-
-    /* === KOMENTAR (Thread Style) === */
+    img { width: 100%; border-radius: 12px; margin-bottom: 25px; }
     .comment-section { margin-top: 50px; }
-    .comment-form input,
-    .comment-form textarea {
+    .comment-form input, .comment-form textarea {
       width: 100%;
-      border-radius: 10px;
-      border: 1px solid #ccc;
       padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
       margin-bottom: 10px;
-      font-size: 1rem;
     }
     .comment-form button {
       background: #16a085;
@@ -66,48 +57,48 @@
       cursor: pointer;
       font-weight: bold;
     }
-    .comment-form button.loading { opacity: 0.7; cursor: not-allowed; }
-    .comments-list { margin-top: 25px; }
-    .comment {
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      margin-bottom: 15px;
-      padding: 10px;
+    .comment { 
+      display: flex; 
+      gap: 10px; 
+      background: #fafafa;
       border-radius: 10px;
-      background: #fdfdfd;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+      padding: 10px;
+      margin-bottom: 10px;
     }
     .avatar {
-      width: 40px;
-      height: 40px;
-      background: #1abc9c;
-      color: white;
-      font-weight: bold;
+      width: 40px; height: 40px;
+      background: #1abc9c; color: white;
       border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 16px;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: bold; font-size: 15px;
       flex-shrink: 0;
     }
     .comment-content { flex: 1; }
-    .comment-content b { color: #2c3e50; }
-    .comment-content small { color: gray; display: block; margin-top: 2px; }
-    .reply-btn {
-      background: none;
-      border: none;
-      color: #16a085;
-      font-size: 13px;
-      cursor: pointer;
-      margin-top: 5px;
-      padding: 0;
-    }
     .reply-thread {
       margin-left: 50px;
       border-left: 3px solid #16a085;
       padding-left: 15px;
       margin-top: 8px;
+    }
+    .reply-btn {
+      background: none;
+      border: none;
+      color: #16a085;
+      cursor: pointer;
+      padding: 0;
+      font-size: 13px;
+      margin-top: 3px;
+    }
+    footer {
+      background: #16a085;
+      color: white;
+      text-align: center;
+      padding: 15px;
+      margin-top: 40px;
+    }
+    @media (max-width: 600px) {
+      main { padding: 20px; }
+      .reply-thread { margin-left: 30px; }
     }
   </style>
 </head>
@@ -132,16 +123,6 @@
     <p>
       Rasa syukur dan lega langsung terasa. Customer saya tersenyum lebar, saya pun ikut bahagia. Ternyata, masih banyak orang baik di sekitar kita yang dengan tulus mau membantu tanpa pamrih.
     </p>
-    <p>
-      Dalam perjalanan pulang, saya ajari customer cara menggunakan <i>Find My Device</i>, supaya kalau suatu hari kejadian serupa terulang, dia sudah siap.
-    </p>
-    <p>
-      Kami menutup hari ini dengan selfie bahagia — bukan karena hp yang kembali saja, tapi karena hati kami juga ikut hangat. 💚📸
-    </p>
-    <p>
-      <b>Kadang, kebaikan kecil bisa jadi cerita besar.</b><br />
-      Dan hari ini saya belajar: membantu orang lain juga bisa jadi rezeki terbaik. ✨
-    </p>
     <p><b>— Haris Al, Driver Ojol Balikpapan 🚴‍♂️</b></p>
 
     <div class="comment-section">
@@ -153,14 +134,12 @@
       </div>
       <p id="commentMessage" style="font-weight:bold;"></p>
 
-      <h3 style="margin-top:40px;">Komentar Pembaca</h3>
-      <div id="commentsList" class="comments-list">
-        <p><i>Memuat komentar...</i></p>
-      </div>
+      <h3 style="margin-top:30px;">Komentar Pembaca</h3>
+      <div id="commentsList"></div>
     </div>
   </main>
 
-  <footer style="background:#16a085;color:white;text-align:center;padding:20px;">
+  <footer>
     <p>© 2025 Haris Al • Dibuat dengan ❤️</p>
   </footer>
 
@@ -170,12 +149,12 @@
 
     function jsonpRequest(url, params = {}) {
       return new Promise((resolve, reject) => {
-        const callbackName = "cb_" + Math.random().toString(36).slice(2);
-        params.callback = callbackName;
+        const cbName = "cb_" + Math.random().toString(36).substr(2);
+        params.callback = cbName;
         const query = new URLSearchParams(params).toString();
         const script = document.createElement("script");
-        window[callbackName] = data => { resolve(data); script.remove(); delete window[callbackName]; };
-        script.onerror = () => { reject(new Error("JSONP failed")); script.remove(); };
+        window[cbName] = data => { resolve(data); script.remove(); delete window[cbName]; };
+        script.onerror = () => reject("JSONP failed");
         script.src = url + "?" + query;
         document.body.appendChild(script);
       });
@@ -186,43 +165,46 @@
       list.innerHTML = "<p><i>Memuat komentar...</i></p>";
       try {
         const data = await jsonpRequest(SCRIPT_URL);
-        const top = data.filter(d => !d.parent);
-        const replies = data.filter(d => d.parent);
-
-        list.innerHTML = "";
-        top.reverse().forEach(item => {
-          const waktu = new Date(item.waktu).toLocaleString("id-ID", { dateStyle: "medium", timeStyle: "short" });
-          const div = document.createElement("div");
-          div.className = "comment";
-          div.innerHTML = `
-            <div class="avatar">${item.nama.charAt(0).toUpperCase()}</div>
-            <div class="comment-content">
-              <b>${item.nama}</b><br>${item.komentar}
-              <small>${waktu}</small>
-              <button class="reply-btn" onclick="reply('${item.id}','${item.nama}')">💬 Balas</button>
-            </div>
-          `;
-
-          // tampilkan balasan
-          const replyWrap = document.createElement("div");
-          replyWrap.className = "reply-thread";
-          replies.filter(r => r.parent == item.id).forEach(rep => {
-            const waktu2 = new Date(rep.waktu).toLocaleString("id-ID", { dateStyle: "medium", timeStyle: "short" });
-            replyWrap.innerHTML += `
-              <div class="comment">
-                <div class="avatar" style="background:#138d75;">${rep.nama.charAt(0).toUpperCase()}</div>
-                <div class="comment-content">
-                  <b>${rep.nama}</b><br>${rep.komentar}
-                  <small>${waktu2}</small>
-                </div>
-              </div>`;
-          });
-          if (replyWrap.innerHTML) div.appendChild(replyWrap);
-          list.appendChild(div);
-        });
+        if (!Array.isArray(data) || data.length === 0) {
+          list.innerHTML = "<p><i>Belum ada komentar.</i></p>";
+          return;
+        }
+        renderComments(data);
       } catch {
-        list.innerHTML = "<p style='color:red;'>Gagal memuat komentar 😢</p>";
+        list.innerHTML = "<p style='color:red;'>Gagal memuat komentar.</p>";
       }
+    }
+
+    function renderComments(data) {
+      const list = document.getElementById("commentsList");
+      const top = data.filter(c => !c.parent);
+      const replies = data.filter(c => c.parent);
+      list.innerHTML = "";
+      top.reverse().forEach(item => {
+        const div = document.createElement("div");
+        div.className = "comment";
+        div.innerHTML = `
+          <div class="avatar">${item.nama.charAt(0).toUpperCase()}</div>
+          <div class="comment-content">
+            <b>${item.nama}</b><br>${item.komentar}<br>
+            <small>${new Date(item.waktu).toLocaleString("id-ID")}</small><br>
+            <button class="reply-btn" onclick="reply('${item.id}','${item.nama}')">💬 Balas</button>
+          </div>`;
+        const childWrap = document.createElement("div");
+        childWrap.className = "reply-thread";
+        replies.filter(r => r.parent == item.id).forEach(rep => {
+          childWrap.innerHTML += `
+            <div class="comment">
+              <div class="avatar" style="background:#138d75;">${rep.nama.charAt(0).toUpperCase()}</div>
+              <div class="comment-content">
+                <b>${rep.nama}</b><br>${rep.komentar}<br>
+                <small>${new Date(rep.waktu).toLocaleString("id-ID")}</small>
+              </div>
+            </div>`;
+        });
+        if (childWrap.innerHTML) div.appendChild(childWrap);
+        list.appendChild(div);
+      });
     }
 
     function reply(id, name) {
@@ -238,35 +220,32 @@
       const comment = document.getElementById("commentInput").value.trim();
       const msg = document.getElementById("commentMessage");
       const btn = document.getElementById("sendBtn");
-
       if (!name || !comment) {
         msg.style.color = "red";
         msg.textContent = "Nama dan komentar tidak boleh kosong!";
         return;
       }
-
       msg.style.color = "#16a085";
       msg.textContent = "Mengirim komentar...";
       btn.classList.add("loading");
-
       try {
-        const data = await jsonpRequest(SCRIPT_URL, { action: "post", name, comment, parent: replyTo });
-        if (data.status === "success") {
-          msg.textContent = "";
+        const res = await jsonpRequest(SCRIPT_URL, { action: "post", name, comment, parent: replyTo });
+        if (res.status === "success") {
           replyTo = "";
           document.getElementById("nameInput").value = "";
           document.getElementById("commentInput").value = "";
-          loadComments();
-        } else throw new Error(data.message);
+          msg.textContent = "";
+          await loadComments();
+        } else throw new Error(res.message);
       } catch {
         msg.style.color = "red";
-        msg.textContent = "❌ Gagal mengirim komentar. Coba lagi nanti.";
+        msg.textContent = "❌ Gagal mengirim komentar.";
       } finally {
         btn.classList.remove("loading");
       }
     }
 
-    window.onload = loadComments;
+    loadComments();
   </script>
 </body>
 </html>
